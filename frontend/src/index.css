@@ -98,13 +98,19 @@ main {
 }
 
 .btn-icon {
-  padding: 0.5rem 0.2rem;
-  margin: 0.3rem;
-  width: 60px;
-  color: rgb(99, 73, 135);
+  padding: 0.5rem 0.8rem;
+  margin: 0.8rem 0;
+
+  color: white;
   border: none;
-  border-radius: 50%;
-  background-color: white;
+
+  background-color: rgb(99, 73, 135);
+  transition: all 0.5s ease-in-out;
+}
+
+.btn-icon:hover {
+  color: white;
+  background-color: rgb(111, 80, 155);
 }
 
 /* .details-image {

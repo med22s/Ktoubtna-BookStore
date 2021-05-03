@@ -12,7 +12,8 @@ const BookDetails = ({match}) => {
         <div>
             <Link to='/'>
                 <button className='btn-icon'>
-                <i className="fas fa-chevron-circle-left fa-3x"></i>
+                {/* <i className="fas fa-chevron-circle-left fa-3x"></i> */}
+                Back to home
                 </button>
             </Link>
             <Row>
