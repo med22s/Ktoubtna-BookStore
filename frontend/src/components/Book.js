@@ -11,9 +11,12 @@ const Book = ({book}) => {
                 <div class="image-album-overlay image-album-overlay-blur">
                     <h2 class="title">{book.name}</h2>
                     <h4 class="author">{book.Author}</h4>
-                    <p class="description">
+                    <div className="wrapper_container">
+                    <p class="description wrapper">
                         {book.description}
                     </p>
+                    </div>
+                    
                     <div className="rating my-3">
                         <Rating rating={book.rating} text={`${book.numReviews} reviews`}/>
                     </div>
