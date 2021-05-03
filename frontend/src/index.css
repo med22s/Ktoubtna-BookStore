@@ -15,7 +15,7 @@ main {
 }
 
 .color-me {
-  color: white;
+  color: rgba(99, 73, 135, 0.774);
 }
 
 .icons:hover {
@@ -93,12 +93,18 @@ main {
 }
 
 .btn {
+  border-radius: 7px;
   border: 1px solid rgb(99, 73, 135);
   background-color: white;
 
   padding: 0.5rem 0.2rem;
   margin: 0.3rem;
   width: 50%;
+}
+
+.btn:hover{
+  background-color: rgb(99, 73, 135);
+  color: white;
 }
 
 .btn-icon {
@@ -121,5 +127,8 @@ main {
   color: rgb(221, 221, 7);
 }
 
+.span-rating{
+  color: white;
+}
 /* .details-image {
 } */

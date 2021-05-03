@@ -23,7 +23,7 @@ const Rating = ({rating,text}) => {
                 <i className={rating>=5 ? 'fas fa-star' : rating>=4.5 ? 'fas fa-star-half-alt' : 'far fa-star'  }>
                 </i>
             </span>
-            <span>{text && text}</span>
+            <span className="span-rating">{text && text}</span>
         </div>
     )
 }
