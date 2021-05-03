@@ -38,16 +38,20 @@ main {
 }
 
 .book {
+  border-radius: 20px;
+  border: none;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
-  background: linear-gradient(rgb(99, 73, 135), rgba(99, 73, 135, 0.774));
+  background: linear-gradient(rgb(103, 135, 73), rgba(99, 73, 135, 0.774));
 }
 
 .image-album-overlay {
+  border-radius: 25px;
+  border:none;
   position: absolute;
   left: 0;
   right: 0;
@@ -62,7 +66,7 @@ main {
   align-items: center;
   text-align: center;
   padding: 5px;
-  background-color: rgba(99, 73, 135, 0.774);
+  background-color: linear-gradient( rgba(99, 73, 135, 0.774),rgb(103, 135, 73));
   color: white;
   transition: opacity 0.5s ease-in-out;
 }
@@ -80,7 +84,7 @@ main {
 }
 
 .image-album-overlay-blur {
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(20px);
 }
 
 .rating span,
@@ -111,6 +115,10 @@ main {
 .btn-icon:hover {
   color: white;
   background-color: rgb(111, 80, 155);
+}
+
+.stars{
+  color: rgb(221, 221, 7);
 }
 
 /* .details-image {
