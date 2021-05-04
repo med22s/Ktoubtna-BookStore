@@ -82,6 +82,7 @@ main {
 
 .image-album-overlay:hover {
   opacity: 0.9;
+  background: linear-gradient( rgba(99, 73, 135, 0.774),rgb(103, 135, 73));
 }
 
 .image-album-overlay-blur {
