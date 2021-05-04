@@ -86,6 +86,7 @@ main {
 
 .image-album-overlay-blur {
   backdrop-filter: blur(20px);
+  background:linear-gradient( rgba(99, 73, 135, 0.774),rgb(103, 135, 73));
 }
 
 .rating span,
@@ -173,7 +174,6 @@ h5.red {
   height: 100%;
 } */
 
-=======
 .stars{
   color: rgb(221, 221, 7);
 }
@@ -183,11 +183,13 @@ h5.red {
 }
 
 .form-control{
-  border-radius: 20px;
+  border-radius: 15px;
   border: none;
   width: 190px;
   justify-content: center;
   margin: 4.8px;
+  vertical-align: middle !important;
+
 }
 .form-control>.btn-search,.form-control{
   display: inline-block;
@@ -199,11 +201,20 @@ h5.red {
   border-radius: 20px;
   width: 90px;
   border-color: white !important;
+  vertical-align: middle !important;
+}
+
+.btn-outline-info{
+  color:rgb(104, 57, 104);
+  border-color: rgb(99, 73, 135);
 }
 
 .btn-search:active{
   background-color: rgb(99, 73, 135) !important;
   border-color:white !important;
-} 
+}
+.socialm{
+  padding-right: 0px;
+}
 /* .details-image {
 } */
