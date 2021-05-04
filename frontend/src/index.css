@@ -132,25 +132,23 @@ main {
 }
 
 .form-control{
-  border-radius: 20px;
   border: none;
   width: 190px;
   justify-content: center;
   margin: 4.8px;
 }
-.form-control>.btn-search,.form-control{
+.form-control>.btn_search,.form-control{
   display: inline-block;
   margin: 0;
 }
 
-.btn-search{
+.btn_search{
   color: rgb(99, 73, 135);
-  border-radius: 20px;
   width: 90px;
   border-color: white !important;
 }
 
-.btn-search:active{
+.btn_search:active{
   background-color: rgb(99, 73, 135) !important;
   border-color:white !important;
 } 
