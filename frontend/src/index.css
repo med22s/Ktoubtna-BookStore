@@ -73,7 +73,6 @@ main {
 
 .image-album-overlay p {
   margin-top: 10px;
-  overflow: hidden;
 }
 
 .image-album-overlay .title {
@@ -101,25 +100,6 @@ main {
   padding: 0.5rem 0.2rem;
   margin: 0.3rem;
   width: 50%;
-  transition: all 0.3s ease-in-out;
-}
-
-.btn-disabled {
-  border: 1px solid rgb(99, 73, 135);
-  background-color: grey;
-  color: black;
-  padding: 0.5rem 0.2rem;
-  margin: 0.3rem;
-  width: 100%;
-  transition: all 0.3s ease-in-out;
-}
-
-.btn:hover {
-  border: 1px solid rgb(99, 73, 135);
-  background-color: rgb(111, 80, 155);
-  color: white;
-  padding: 0.5rem 0.2rem;
-  margin: 0.3rem;
 }
 
 .btn:hover{
@@ -143,37 +123,6 @@ main {
   background-color: rgb(111, 80, 155);
 }
 
-
-.myList {
-  background-color: rgb(111, 80, 155);
-  color: white;
-}
-
-.wrapper_container {
-  width: 300px;
-  height: 200px;
-  overflow: hidden;
-}
-
-.wrapper {
-  -webkit-column-width: 300px;
-  column-width: 300px;
-  height: 100%;
-}
-
-h5.green {
-  color: rgb(111, 80, 155);
-}
-
-h5.red {
-  color: grey;
-}
-
-/* .list {
-  height: 100%;
-} */
-
-=======
 .stars{
   color: rgb(221, 221, 7);
 }
