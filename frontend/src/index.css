@@ -86,7 +86,6 @@ main {
 
 .image-album-overlay-blur {
   backdrop-filter: blur(20px);
-  background:linear-gradient( rgba(99, 73, 135, 0.774),rgb(103, 135, 73));
 }
 
 .rating span,
