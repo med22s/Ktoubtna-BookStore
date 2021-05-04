@@ -21,7 +21,7 @@ const Footer = () => {
                                 </a>
                             </MDBContainer>
                         </Col>
-                        Copyright &copy; Ktoubtna
+                        Copyright &copy; <a href="#!"><strong>Ktoubtna</strong></a>
                     </Col>
                 </Row>
             </Container>

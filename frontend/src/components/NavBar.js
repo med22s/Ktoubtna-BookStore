@@ -22,7 +22,7 @@ const NavBar = () => {
                             </Nav>
                             <Form className="search__" >
                                 <FormControl className="form-control" type="search" placeholder="Search"/>
-                                <Button className="btn-search" variant="outline-info">Search</Button>
+                                <Button className="ssearch" variant="outline-info">Search</Button>
                             </Form>
                         </Navbar.Collapse>
                 </Container>

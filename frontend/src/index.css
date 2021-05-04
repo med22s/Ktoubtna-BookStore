@@ -3,6 +3,10 @@ main {
   min-height: 80vh;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 .logo {
   font-family: 'Pattaya', sans-serif;
   font-size: 26px;
@@ -183,35 +187,37 @@ h5.red {
 }
 
 .form-control{
-  border-radius: 15px;
   border: none;
   width: 190px;
   justify-content: center;
   margin: 4.8px;
+  padding: 10px;
   vertical-align: middle !important;
 
 }
-.form-control>.btn-search,.form-control{
+.form-control>.ssearch,.form-control{
   display: inline-block;
   margin: 0;
 }
 
-.btn-search{
+.ssearch{
+  border-radius: 0px;
   color: rgb(99, 73, 135);
-  border-radius: 20px;
   width: 90px;
+  height: 35px;
+  padding: 3px;
   border-color: white !important;
   vertical-align: middle !important;
 }
 
-.btn-outline-info{
-  color:rgb(104, 57, 104);
-  border-color: rgb(99, 73, 135);
-}
-
-.btn-search:active{
+.ssearch:active,
+.ssearch:focus,
+.ssearch:hover{
+  padding: 3px;
   background-color: rgb(99, 73, 135) !important;
+  color:white;
   border-color:white !important;
+  outline-color: rgb(104, 57, 104) !important;
 }
 .socialm{
   padding-right: 0px;
