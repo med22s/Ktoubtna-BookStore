@@ -1,12 +1,21 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {Row,Col,Image,ListGroup} from 'react-bootstrap'
-import books from '../SampleBooks'
 import Rating from '../components/Rating'
+import axios from 'axios'
 
 const BookDetails = ({match}) => {
 
-    const book=books.find(book=>book._id===match.params.id);
+    const [book,setBook]=useState({});
+
+    useEffect(()=>{
+        const getBook=async ()=>{
+            const {data}=await axios.get(`/api/books/${match.params.id}`);
+            setBook(data);
+        }
+
+        getBook();
+    },[]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div>
