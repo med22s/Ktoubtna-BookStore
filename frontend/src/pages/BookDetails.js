@@ -17,10 +17,10 @@ const BookDetails = ({match}) => {
                 </button>
             </Link>
             <Row>
-                <Col className='image-parent' md={4}>
+                <Col className='image-parent' md={3}>
                     <Image className='details-image' src={book.image} alt={book.name} fluid />
                 </Col>
-                <Col md={5}>
+                <Col md={6}>
                     <ListGroup className='list' variant='flush' style={{height:'100%'}}>
                         <ListGroup.Item>
                             <h1>{book.name}</h1>
@@ -32,7 +32,7 @@ const BookDetails = ({match}) => {
                             <Rating rating={book.rating} text={`${book.numReviews} reviews`}/>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <h3>{'$'+book.price}</h3>
+                            <h3>{book.genre}</h3>
                         </ListGroup.Item>
                         <ListGroup.Item>
                             <h3>Synopsis:</h3>
@@ -40,7 +40,37 @@ const BookDetails = ({match}) => {
                         </ListGroup.Item>
                     </ListGroup>
                 </Col>
+
+                <Col md={3}>
+                    <ListGroup >
+                        <Row>
+                            <Col>
+                                <ListGroup.Item>
+                                    <h4>Price: ${book.price}</h4>
+                                </ListGroup.Item>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <ListGroup.Item>
+                                    <h5 className={book.numberInStock >=1 ? 'green':'red'}>{book.numberInStock >=1 ? 'In Stock':'Out Of Stock'}</h5>
+                                </ListGroup.Item>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <ListGroup.Item>
+                                   <button style={{width:'100%'}} className={book.numberInStock >0 ? 'btn' : 'btn-disabled'} disabled={book.numberInStock <=0}>Add to Cart</button>
+                                </ListGroup.Item>
+                            </Col>
+                        </Row>
+
+                   
+                    </ListGroup>
+                </Col>
             </Row>
+            
+                
 
         </div>
     )
