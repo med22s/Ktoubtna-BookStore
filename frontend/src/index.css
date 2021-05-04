@@ -15,7 +15,7 @@ main {
 }
 
 .color-me {
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .icons:hover {
@@ -38,16 +38,20 @@ main {
 }
 
 .book {
+  border-radius: 20px;
+  border: none;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
-  background: linear-gradient(rgb(99, 73, 135), rgba(99, 73, 135, 0.774));
+  background: linear-gradient(rgb(103, 135, 73), rgba(99, 73, 135, 0.774));
 }
 
 .image-album-overlay {
+  border-radius: 25px;
+  border:none;
   position: absolute;
   left: 0;
   right: 0;
@@ -62,7 +66,7 @@ main {
   align-items: center;
   text-align: center;
   padding: 5px;
-  background-color: rgba(99, 73, 135, 0.774);
+  background-color: linear-gradient( rgba(99, 73, 135, 0.774),rgb(103, 135, 73));
   color: white;
   transition: opacity 0.5s ease-in-out;
 }
@@ -81,7 +85,7 @@ main {
 }
 
 .image-album-overlay-blur {
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(20px);
 }
 
 .rating span,
@@ -90,6 +94,7 @@ main {
 }
 
 .btn {
+  border-radius: 7px;
   border: 1px solid rgb(99, 73, 135);
   background-color: white;
 
@@ -117,6 +122,11 @@ main {
   margin: 0.3rem;
 }
 
+.btn:hover{
+  background-color: rgb(99, 73, 135);
+  color: white;
+}
+
 .btn-icon {
   padding: 0.5rem 0.8rem;
   margin: 0.8rem 0;
@@ -132,6 +142,7 @@ main {
   color: white;
   background-color: rgb(111, 80, 155);
 }
+
 
 .myList {
   background-color: rgb(111, 80, 155);
@@ -162,5 +173,37 @@ h5.red {
   height: 100%;
 } */
 
+=======
+.stars{
+  color: rgb(221, 221, 7);
+}
+
+.span-rating{
+  color: white;
+}
+
+.form-control{
+  border-radius: 20px;
+  border: none;
+  width: 190px;
+  justify-content: center;
+  margin: 4.8px;
+}
+.form-control>.btn-search,.form-control{
+  display: inline-block;
+  margin: 0;
+}
+
+.btn-search{
+  color: rgb(99, 73, 135);
+  border-radius: 20px;
+  width: 90px;
+  border-color: white !important;
+}
+
+.btn-search:active{
+  background-color: rgb(99, 73, 135) !important;
+  border-color:white !important;
+} 
 /* .details-image {
 } */
