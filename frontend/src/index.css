@@ -203,6 +203,11 @@ h5.red {
   vertical-align: middle !important;
 }
 
+.btn-outline-info{
+  color:rgb(104, 57, 104);
+  border-color: rgb(99, 73, 135);
+}
+
 .btn-search:active{
   background-color: rgb(99, 73, 135) !important;
   border-color:white !important;
