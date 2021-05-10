@@ -1,26 +1,25 @@
 import express from 'express'
 import dotenv from 'dotenv'
-
+import books from './routes/books.js'
+import dbConnection from "./config/db.js";
+import error from './middlewares/error.js'
+import notfound from './middlewares/notfound.js'
 
 const app=express();
-import dbConnection from "./config/db.js";
+
 dotenv.config();
+dbConnection();
 
-import books from './sampleBooks.js'
 
-app.get('/api/books',(req,res)=>{
-    res.json(books);
-})
+app.use('/api/books',books)
 
-app.get('/api/books/:id',(req,res)=>{
-
-    res.json(books.find(book=>book._id===req.params.id));
-})
+app.use(notfound)
+app.use(error)
 
 
 const PORT=process.env.PORT || 5000;
 
-dbConnection();
+
 
 app.listen(PORT,()=>{
     console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`);

@@ -5,7 +5,7 @@ import {LinkContainer} from 'react-router-bootstrap'
 const NavBar = () => {
     return (
         <div>
-            <Navbar style={{backgroundColor:'rgb(99, 73, 135)'}} variant='light'  expand="lg" collapseOnSelect>
+            <Navbar style={{backgroundColor:'#46525c'}} variant='light'  expand="lg" collapseOnSelect>
                 <Container >
                         <LinkContainer to='/'>
                             <Navbar.Brand ><span className='logo color-me' >Ktoubtna</span></Navbar.Brand>
