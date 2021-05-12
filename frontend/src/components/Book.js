@@ -10,7 +10,7 @@ const Book = ({book}) => {
                 <img className='img' alt='Novel' src={book.image} ></img>
                 <div class="image-album-overlay image-album-overlay-blur">
                     <h2 class="title">{book.name}</h2>
-                    <h4 class="author">{book.Author}</h4>
+                    <h4 class="author">{book.author}</h4>
                     <div className="wrapper_container">
                     <p class="description wrapper">
                         {book.description}

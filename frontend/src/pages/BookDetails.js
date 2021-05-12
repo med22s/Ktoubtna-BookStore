@@ -26,7 +26,7 @@ const BookDetails = ({match}) => {
                             <h1>{book.name}</h1>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <h3>{book.Author}</h3>
+                            <h3>{book.author}</h3>
                         </ListGroup.Item>
                         <ListGroup.Item>
                             <Rating rating={book.rating} text={`${book.numReviews} reviews`}/>

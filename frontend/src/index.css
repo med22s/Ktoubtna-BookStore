@@ -3,12 +3,8 @@ main {
   min-height: 80vh;
 }
 
-html{
-  scroll-behavior: smooth;
-}
-
 .logo {
-  font-family: 'Pattaya', sans-serif;
+  /* font-family: 'Pattaya', sans-serif; */
   font-size: 26px;
 }
 
@@ -19,7 +15,7 @@ html{
 }
 
 .color-me {
-  color: rgb(255, 255, 255);
+  color: white;
 }
 
 .icons:hover {
@@ -28,7 +24,7 @@ html{
 
 .grid-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 2rem;
 }
 
@@ -42,20 +38,16 @@ html{
 }
 
 .book {
-  border-radius: 20px;
-  border: none;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
-  background: linear-gradient(rgb(103, 135, 73), rgba(99, 73, 135, 0.774));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
 }
 
 .image-album-overlay {
-  border-radius: 25px;
-  border:none;
   position: absolute;
   left: 0;
   right: 0;
@@ -70,7 +62,7 @@ html{
   align-items: center;
   text-align: center;
   padding: 5px;
-  background-color: linear-gradient( rgba(99, 73, 135, 0.774),rgb(103, 135, 73));
+  background-color: rgba(70, 68, 68, 0.6);
   color: white;
   transition: opacity 0.5s ease-in-out;
 }
@@ -82,6 +74,13 @@ html{
 
 .image-album-overlay .title {
   padding: 30px;
+  font-style: bold !important;
+  color: black !important;
+}
+
+.image-album-overlay .author {
+  font-style: bold !important;
+  color: black !important;
 }
 
 .image-album-overlay:hover {
@@ -89,8 +88,7 @@ html{
 }
 
 .image-album-overlay-blur {
-  backdrop-filter: blur(20px);
-  background: linear-gradient( rgba(99, 73, 135, 0.774),rgb(103, 135, 73));
+  backdrop-filter: blur(9px);
 }
 
 .rating span,
@@ -99,8 +97,7 @@ html{
 }
 
 .btn {
-  border-radius: 7px;
-  border: 1px solid rgb(99, 73, 135);
+  border: 1px solid rgba(70, 68, 68, 0.6);
   background-color: white;
 
   padding: 0.5rem 0.2rem;
@@ -110,7 +107,7 @@ html{
 }
 
 .btn-disabled {
-  border: 1px solid rgb(99, 73, 135);
+  border: 1px solid rgba(70, 68, 68, 0.6);
   background-color: grey;
   color: black;
   padding: 0.5rem 0.2rem;
@@ -121,15 +118,10 @@ html{
 
 .btn:hover {
   border: 1px solid rgb(99, 73, 135);
-  background-color: rgb(111, 80, 155);
+  background-color: rgba(70, 68, 68, 0.6);
   color: white;
   padding: 0.5rem 0.2rem;
   margin: 0.3rem;
-}
-
-.btn:hover{
-  background-color: rgb(99, 73, 135);
-  color: white;
 }
 
 .btn-icon {
@@ -139,18 +131,17 @@ html{
   color: white;
   border: none;
 
-  background-color: rgb(99, 73, 135);
+  background-color: rgba(70, 68, 68, 0.6);
   transition: all 0.5s ease-in-out;
 }
 
 .btn-icon:hover {
   color: white;
-  background-color: rgb(111, 80, 155);
+  background-color: rgba(70, 68, 68, 0.6);
 }
 
-
 .myList {
-  background-color: rgb(111, 80, 155);
+  background-color: rgba(70, 68, 68, 0.6);
   color: white;
 }
 
@@ -167,60 +158,9 @@ html{
 }
 
 h5.green {
-  color: rgb(111, 80, 155);
+  color: rgba(70, 68, 68, 0.6);
 }
 
 h5.red {
   color: grey;
 }
-
-/* .list {
-  height: 100%;
-} */
-
-.stars{
-  color: rgb(221, 221, 7);
-}
-
-.span-rating{
-  color: white;
-}
-
-.form-control{
-  border: none;
-  width: 190px;
-  justify-content: center;
-  margin: 4.8px;
-  padding: 10px;
-  vertical-align: middle !important;
-
-}
-.form-control>.ssearch,.form-control{
-  display: inline-block;
-  margin: 0;
-}
-
-.ssearch{
-  border-radius: 0px;
-  color: rgb(99, 73, 135);
-  width: 90px;
-  height: 35px;
-  padding: 3px;
-  border-color: white !important;
-  vertical-align: middle !important;
-}
-
-.ssearch:active,
-.ssearch:focus,
-.ssearch:hover{
-  padding: 3px;
-  background-color: rgb(99, 73, 135) !important;
-  color:white;
-  border-color:white !important;
-  outline-color: rgb(104, 57, 104) !important;
-}
-.socialm{
-  padding-right: 0px;
-}
-/* .details-image {
-} */

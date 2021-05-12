@@ -1,11 +1,11 @@
 import React from 'react'
-import {Navbar,Nav,Container,Form,FormControl,Button} from 'react-bootstrap'
+import {Navbar,Nav,Container} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 
 const NavBar = () => {
     return (
         <div>
-            <Navbar className="navbar active" style={{backgroundColor:'rgb(99, 73, 135)'}} variant='light'  expand="lg" collapseOnSelect>
+            <Navbar style={{backgroundColor:'#46525c'}} variant='light'  expand="lg" collapseOnSelect>
                 <Container >
                         <LinkContainer to='/'>
                             <Navbar.Brand ><span className='logo color-me' >Ktoubtna</span></Navbar.Brand>
@@ -20,10 +20,6 @@ const NavBar = () => {
                                 <Nav.Link><span className='color-me icons'> <i className='fas fa-user'></i> Sign In</span></Nav.Link>
                             </LinkContainer>
                             </Nav>
-                            <Form className="search__" >
-                                <FormControl className="form-control" type="search" placeholder="Search"/>
-                                <Button className="ssearch" variant="outline-info">Search</Button>
-                            </Form>
                         </Navbar.Collapse>
                 </Container>
             </Navbar>
