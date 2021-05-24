@@ -14,9 +14,10 @@
 This project is our last year's project.
 
 ## Screenshots
-![Example screenshot](https://i.ibb.co/mT975LT/project-1.png)
-![Example screenshot](https://i.ibb.co/s6ptdYg/read-more-page.jpg)
-![Example screenshot](https://i.ibb.co/5BRDvvk/hove-book.jpg)
+* LOADING . . .
+* LOADING . . .
+* LOADING . . .
+
 
 ## Technologies
 * react-bootstrap - ^1.5.2
