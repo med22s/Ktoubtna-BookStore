@@ -4,8 +4,7 @@ import {Link} from 'react-router-dom'
 
 const Book = ({book}) => {
     return (
-        <>
-            
+        <> 
             <div className='book'>
                 <img className='img' alt='Novel' src={book.image} ></img>
                 <div class="image-album-overlay image-album-overlay-blur">
