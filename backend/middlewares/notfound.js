@@ -3,4 +3,4 @@ const notfound=(req,res,next)=>{
     next(new Error(`Error: ${req.originalUrl} not found`));
 }
 
-export default notfound
+module.exports = notfound

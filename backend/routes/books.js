@@ -1,6 +1,6 @@
-import express from 'express'
-import Book from '../Models/book.js'
-import asyncHandler from 'express-async-handler'
+const express       = require('express');
+const  Book         = require('../Models/book.js');
+const asyncHandler  = require('express-async-handler');
 
 
 const router=express.Router()
@@ -18,4 +18,4 @@ router.get('/:id',asyncHandler(async(req,res)=>{
 })) 
 
 
-export default router
+module.exports = router;
