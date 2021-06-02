@@ -59,10 +59,10 @@ exports.login = asyncHandler (async (req, res, next) => {
 
 exports.getToken = asyncHandler ( async (req, res, next) => {
     const userId        = req.userId;
-    //get oLd token
+    //get oLd token Model
     const oldRefTokenModel   = req.refreshTokenObj;
     const authService   = new authServiceClass();
-    // find userBy id and generate new accesToken
+    // find userBy id and generate new accesToken & increment number used for old RefreshToken
     const {user,newAccessToken}   = await authService.getToken(userId,oldRefTokenModel,res); 
     res.status(httpStatus.CREATED);
     return res.json({

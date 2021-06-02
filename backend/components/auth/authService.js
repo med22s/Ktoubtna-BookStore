@@ -81,8 +81,8 @@ module.exports = class authService {
             const user = await User.findOne({'_id': userId }).select('-password -createdAt -updatedAt -__v')
             if(user)
             {
-                const  tokenService = new tokenServiceClass();
-                let newAccessToken     = await tokenService.getAccessTokenByRefreshToken(user,refreshTokenObj,response);
+                const  tokenService     = new tokenServiceClass();
+                let newAccessToken      = await tokenService.getAccessTokenByRefreshToken(user,refreshTokenObj,response);
                 return Promise.resolve({user,newAccessToken});
             }
             throw new APIError("Token Not valide",httpStatus.UNAUTHORIZED);
@@ -103,20 +103,23 @@ module.exports = class authService {
             if(!refreshToken)
                 throw new APIError('invalide Token',httpStatus.FORBIDDEN);
             //insert accessToken to blacklist  &  remove refrechToken from db 
-            await Promise.all([blackListToken.addToken(accessToken),refreshTokenModel.removeByToken(refreshToken)])
-            //destroy refrechtoken cookie 
+            await Promise.all([
+                blackListToken.addToken(accessToken),
+                refreshTokenModel.removeByToken(refreshToken)
+            ]);
+            //destroy refreshtoken cookie 
             destroyCookie(response,'refreshToken','/api/auth/');
             return Promise.resolve(true);
         } catch(error) {
             return Promise.reject(error);
         }
     }
-
+    /*
+    * @params userID
+    * @description delete all refreshToken for this user, so after access token expired ,will logout
+    */
     async logoutUser(userId) {
         try {
-            /*
-            *delete all refresh Token so after access token expired ,will logout
-            */
             await refreshTokenModel.deleteMany({'userId' : userId});
             return Promise.resolve({message :" logouted user done Successfully"});
         } catch(error) {

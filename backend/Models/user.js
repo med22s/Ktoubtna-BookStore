@@ -75,7 +75,7 @@ userSchema.statics = {
 },
     checkDuplicateEmail(error) {
         if (error.name === 'MongoError' && error.code === 11000) {
-            return new APIError("email already exists",httpStatus.CONFLICT);
+            return new APIError("email already exists",httpStatus.BAD_REQUEST);
         }
         return error;
     }

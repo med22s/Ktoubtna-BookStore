@@ -1,13 +1,20 @@
-const express       = require('express');
-const  Book         = require('../Models/book.js');
+const express = require('express');
 const asyncHandler  = require('express-async-handler');
+const router = express.Router()
+
+/*
+* Models
+*/
+const Book = require('../../Models/book');
 
 
-const router=express.Router()
 
+/*
+* book routes
+*/
 
 router.get('/',asyncHandler(async (req,res)=>{
-    const books=await Book.find()
+    const books = await Book.find()
     res.json(books);
 }))
 
@@ -19,3 +26,6 @@ router.get('/:id',asyncHandler(async(req,res)=>{
 
 
 module.exports = router;
+
+
+module.exports = router

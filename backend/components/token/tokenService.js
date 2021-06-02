@@ -1,6 +1,4 @@
 const jwt=require('jsonwebtoken');
-const httpStatus = require('http-status');
-
 /*
 * Models
 */
@@ -50,7 +48,8 @@ module.exports = class tokenService {
             // Add new one  && update number Used For the old  RefereshToken 
             await Promise.all([ 
                 oldRefreshTokenObj.updateTokenNumberUsed(),
-                refreshTokenModel.addRefreshToken(user.id,refreshToken)])
+                refreshTokenModel.addRefreshToken(user.id,refreshToken)
+            ]);
             // set new refreshToken in Cookies
             setRefreshTokenCookie(response,refreshToken);
             return Promise.resolve(accessToken);
@@ -59,23 +58,11 @@ module.exports = class tokenService {
         }    
     }
     
-    async verifyAccessToken(req)
-    {
+    async verifyAccessToken(token) {
         try {
-            const authHeader = req.headers.authorization;
-            if (authHeader) {
-                const token = authHeader.split(' ')[1];
-                const  unAthourizedError = new APIError('unAuthorized',httpStatus.UNAUTHORIZED);
-                if(!token)
-                {
-                    throw unAthourizedError;
-                }
-                return Promise.resolve(jwt.verify(token, accessTokenSecret));
-            }
-            throw unAthourizedError;
+            return Promise.resolve( await jwt.verify(token, accessTokenSecret));
         } catch(error){
             return Promise.reject(error);
         }
-        
     }
 }
