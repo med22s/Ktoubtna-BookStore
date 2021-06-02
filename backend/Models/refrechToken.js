@@ -27,6 +27,19 @@ const refreshTokenSchema = new mongoose.Schema({
     expires: { type: Date },
 });
 
+refreshTokenSchema.methods = {
+    async updateTokenNumberUsed()
+    {
+        try 
+        {
+            this.used +=1; 
+            return Promise.resolve(await this.save());
+        } catch (error){
+            return Promise.reject(error);
+        }
+    }
+}
+
 refreshTokenSchema.statics = {
     /*
     *  @param {Userid} 
@@ -71,7 +84,7 @@ refreshTokenSchema.statics = {
     {
         try 
         {
-            const refToken= await RefreshToken.remove({token});
+            const refToken= await RefreshToken.deleteOne({token});
             if(refToken)
             {
                 return refToken;

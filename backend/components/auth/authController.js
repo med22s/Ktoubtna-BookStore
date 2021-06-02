@@ -1,6 +1,5 @@
 
 const httpStatus = require('http-status');
-const {validationResult}        = require('express-validator');
 const asyncHandler  = require('express-async-handler');
 
 
@@ -9,17 +8,22 @@ const asyncHandler  = require('express-async-handler');
 */
 const User              = require('../../Models/user');
 const refreshTokenModel = require('../../Models/refrechToken');
+const blackListToken = require('../../Models/blackListToken');
+
 
 /*
 * utils
 */
+const { APIError } = require('../../utils/errorHandler');
 const {setUpObjectFields}       = require('../../utils/field');
 const {isVerified}              = require('../../utils/checkPassword');
-const {setRefreshTokenCookie}   = require('../../utils/helper');
+const {setRefreshTokenCookie,destroyCookie}   = require('../../utils/helper');
 /*
 * services
 */
-const {generateToken}=require('../token/tokenService');
+const tokenServiceClass = require('../token/tokenService');
+const authServiceClass  = require('./authService');
+
 
 
 /*
@@ -29,73 +33,52 @@ const {generateToken}=require('../token/tokenService');
 
 exports.register = async (req, res, next) => {
     try {
-        let registerPayload = ['name','email','password'];
-        const userBody = setUpObjectFields(req.body,registerPayload)
-        let user = await new User(userBody).save();
-        let transformedUser = user.transform();
+        const  authService  = new authServiceClass ();
+        const  user         = await authService.signup(req.body);
         return res.status(httpStatus.CREATED).json({
-            user: transformedUser
+            user
         });
     } catch (error) {
         return next(User.checkDuplicateEmail(error));
     }
 };
 
-
 exports.login = asyncHandler (async (req, res, next) => {
     const {email,password} = req.body;
-    const user = await User.findOne({'email': email })
-    if(user)
-    {
-        const isMatch = await isVerified(password,user.password)
-        if(isMatch)
-        {
-            let userId = user._id;
-            const userObj = {
-                id      : userId,
-                name    : user.name,
-                emai    : user.email,
-                isAdmin : user.isAdmin
-            };
-            const accesToken  =  generateToken({user : userObj});
-            const refreshToken = refreshTokenModel.generate(userId);
-            //Add this refresh token to db
-            await refreshTokenModel.addRefreshToken(userId,refreshToken);
-            // set max age for cookie
-            setRefreshTokenCookie(res,refreshToken);
-            res.status(httpStatus.CREATED);
-            return res.json({token: accesToken});
-        }   
-    }
-    throw new APIError("password or email incorrect",httpStatus.BAD_REQUEST);
+    const  authService = new authServiceClass ();
+    const  tokenService = new tokenServiceClass();
+    // check if email and password correct and resolve userObj
+    let user        = await authService.login(email,password);
+    //get access token 
+    const accessToken = await tokenService.getAccessToken(user,res);
+    res.status(httpStatus.OK).json( {
+        user,
+        token : accessToken,
+    });
 });
 
 exports.getToken = asyncHandler ( async (req, res, next) => {
-    const userId = req.userId;
-    const userObj = {
-        id      : userId,
-        name    : user.name,
-        emai    : user.email,
-        isAdmin : user.isAdmin
-    };
-    const accesToken   = generateToken({user: userObj});
-    const refreshToken = refreshTokenModel.generate(userId);
-    //Add this token to db
-    await refreshTokenModel.addRefreshToken(userId,refreshToken);
-    setRefreshTokenCookie(res,refreshToken);
+    const userId        = req.userId;
+    //get oLd token
+    const oldRefTokenModel   = req.refreshTokenObj;
+    const authService   = new authServiceClass();
+    // find userBy id and generate new accesToken
+    const {user,newAccessToken}   = await authService.getToken(userId,oldRefTokenModel,res); 
     res.status(httpStatus.CREATED);
     return res.json({
-        newToken : accesToken,
-        userId: userId 
+        user,
+        newToken : newAccessToken
     });
 });
 
 
 exports.logout = asyncHandler ( async (req, res, next) => {
-    //insert token to blacklist 
-    //remove refrech token from db
-    res.status(httpStatus.CREATED);
+    const refreshToken      = req.cookies['refreshToken'];
+    const accessToken       = req.token;
+    const authService       = new authServiceClass();
+    await authService.logout(refreshToken,accessToken,res);
+    res.status(httpStatus.OK);
     return res.json({
-        userId: 'userId' 
+        message : "logout successfully"
     });
 });

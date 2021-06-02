@@ -15,7 +15,7 @@ module.exports = {
     refreshTokenSecret: process.env.REFRESH_Token_SECRET,
     accessTokenExpiration: process.env.ACCESS_TOKEN_EXPIRATION,
     refreshTokenExpiration: process.env.REFRESH_TOKEN_EXPIRATION,
-    refreshTokenExpirationNumberDays: process.env.REFRESH_TOKEN_EXPIRATION_NUMBER_DAYS || 3,
+    refreshTokenExpirationNumberDays: process.env.REFRESH_TOKEN_EXPIRATION_NUMBER_DAYS || 1,
     mongo: {
         uri: process.env.MONGO_URI
     },
