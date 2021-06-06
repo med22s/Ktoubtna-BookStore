@@ -1,26 +1,38 @@
-import React,{useState,useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import {Link} from 'react-router-dom'
-import {Row,Col,Image,ListGroup} from 'react-bootstrap'
+import {Row,Col,Image,ListGroup,Form,Button} from 'react-bootstrap'
 import Rating from '../components/Rating'
-import axios from 'axios'
+import {useDispatch,useSelector} from 'react-redux'
+import {bookDetails} from '../actions/bookActions'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
 
-const BookDetails = ({match}) => {
+const BookDetails = ({match,history}) => {
 
-    const [book,setBook]=useState({});
+    const dispatch=useDispatch()
+    const [qty,setQty]=useState(1)
+
 
     useEffect(()=>{
-        const getBook=async ()=>{
-            const {data}=await axios.get(`/api/books/${match.params.id}`);
-            setBook(data);
-        }
+       dispatch(bookDetails(match.params.id))
+    },[dispatch,match]) // eslint-disable-line react-hooks/exhaustive-deps
 
-        getBook();
-    },[]) // eslint-disable-line react-hooks/exhaustive-deps
+
+
+    const addToCart=e=>{
+        history.push(`/cart/${match.params.id}?qty=${qty}`)
+    }
+
+
+    const {book,loading,error}=useSelector(state=>state.bookDetails)
 
     return (
-        <div>
+        <>
+        {
+            loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> :(
+                <div>
             <Link to='/'>
-                <button className='btn-icon'>
+                <button className='btn btn-dark my-3'>
                 {/* <i className="fas fa-chevron-circle-left fa-3x"></i> */}
                 Back to home
                 </button>
@@ -51,28 +63,64 @@ const BookDetails = ({match}) => {
                 </Col>
 
                 <Col md={3}>
-                    <ListGroup >
-                        <Row>
+                    <ListGroup variant='flush' >
+                        <ListGroup.Item>
+                            <Row>
+                                <Col>Price:</Col>
+                                <Col>
+                                    <strong>${book.price}</strong>
+                                </Col>
+                            </Row>
+                        </ListGroup.Item>
+
+                        <ListGroup.Item>
+                            <Row>
+                            <Col>Status:</Col>
                             <Col>
-                                <ListGroup.Item>
-                                    <h4>Price: ${book.price}</h4>
-                                </ListGroup.Item>
+                                <h5 className={book.numberInStock >=1 ? 'green':'red'}>
+                                    {book.numberInStock >=1 ? 'In Stock':'Out Of Stock'}
+                                </h5>
                             </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <ListGroup.Item>
-                                    <h5 className={book.numberInStock >=1 ? 'green':'red'}>{book.numberInStock >=1 ? 'In Stock':'Out Of Stock'}</h5>
-                                </ListGroup.Item>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <ListGroup.Item>
-                                   <button style={{width:'100%'}} className={book.numberInStock >0 ? 'btn' : 'btn-disabled'} disabled={book.numberInStock <=0}>Add to Cart</button>
-                                </ListGroup.Item>
-                            </Col>
-                        </Row>
+                            </Row>
+                        </ListGroup.Item>
+
+                    {book.numberInStock > 0 && (
+                        <ListGroup.Item variant='flush'>
+                            <Row>
+                                <Col>Quantity:</Col>
+                                <Col>
+                                
+                                    <Form.Control className='form-select' as="select"  
+                                        value={qty}
+                                        onChange={(e) => setQty(e.target.value)}
+                                    >
+                                        {[...Array(book.numberInStock).keys()].map(
+                                        (x) => (
+                                            <option key={x + 1} value={x + 1}>
+                                            {x + 1}
+                                            </option>
+                                        )
+                                        )}
+                                    </Form.Control> 
+                               
+                                
+                                </Col>
+                            </Row>
+                        </ListGroup.Item>
+                  )}
+
+                    <ListGroup.Item>
+
+                        <Button
+                        onClick={addToCart}
+                        style={{width:'100%'}}
+                        className='btn-cart'
+                        type='button'
+                        disabled={book.numberInStock === 0}
+                        >
+                        Add To Cart
+                        </Button>
+                    </ListGroup.Item>
 
                    
                     </ListGroup>
@@ -82,6 +130,11 @@ const BookDetails = ({match}) => {
                 
 
         </div>
+            )
+        }
+
+    </>
+        
     )
 }
 

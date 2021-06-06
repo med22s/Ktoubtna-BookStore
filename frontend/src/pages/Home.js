@@ -1,28 +1,42 @@
-import React,{useState,useEffect} from 'react' 
+import React,{useEffect} from 'react' 
 import Book from '../components/Book'
-import axios from 'axios'
+import {useDispatch,useSelector} from 'react-redux'
+import {listBooks} from '../actions/bookActions'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
+import {Row,Col} from 'react-bootstrap'
 const Home = () => {
-    const [books,setBooks]=useState([]);
+    const dispatch=useDispatch()
 
     useEffect(()=>{
-        const getBooks=async ()=>{
-            const {data}=await axios.get('/api/books');
-            setBooks(data);
-        }
+        dispatch(listBooks())
+    },[dispatch])
 
-        getBooks();
-    },[])
+    const {books,error,loading}=useSelector(state=>state.bookList)
+
     return (
         
-
         <>
             <h1>Top Rated Books</h1>
-            <div className='grid-wrapper'>
-                {books.map(book=>(
-                    <Book key={book._id} book={book}/>
-                ))}
-            </div>
-                
+            <>
+
+                {
+                    loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message>
+                    :<>
+                        <Row>
+
+                                    {books.map((book) => (
+                        <Col key={book._id} sm={12} md={6} lg={4} xl={3}>
+                            <Book book={book} />
+                        </Col>
+                        ))}
+                        </Row>
+                        
+                        
+                    </>
+                }
+
+            </>
         </>
     )
 }
