@@ -23,9 +23,7 @@ const Cart = ({match,location,history}) => {
     },[dispatch,book_id,quantity])
 
 
-    // const removeFromCart = (id) => {
-        
-    //   }
+    
     
       const checkoutHandler = () => {
         history.push('/login?redirect=shipping')

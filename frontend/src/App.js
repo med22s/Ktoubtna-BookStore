@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import BookDetails from './pages/BookDetails.js'
 import Cart from './pages/Cart.js'
+import Login from './pages/Login.js'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 
 
@@ -19,6 +20,7 @@ function App() {
               <Route path='/' exact component={Home}></Route>
               <Route path='/book/:id' exact component={BookDetails}></Route>
               <Route path='/cart/:id?' exact component={Cart}></Route>
+              <Route path='/Login' exact component={Login}></Route>
             </Switch>
           </Container>
       </main>

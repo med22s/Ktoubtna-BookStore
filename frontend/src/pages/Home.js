@@ -24,18 +24,14 @@ const Home = () => {
                     loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message>
                     :<>
                         <Row>
-
                                     {books.map((book) => (
                         <Col key={book._id} sm={12} md={6} lg={4} xl={3}>
                             <Book book={book} />
                         </Col>
                         ))}
                         </Row>
-                        
-                        
                     </>
                 }
-
             </>
         </>
     )

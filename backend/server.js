@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import books from './routes/books.js'
+import users from './routes/users.js'
 import dbConnection from "./config/db.js";
 import error from './middlewares/error.js'
 import notfound from './middlewares/notfound.js'
@@ -11,7 +12,11 @@ dotenv.config();
 dbConnection();
 
 
+app.use(express.json())
+
+
 app.use('/api/books',books)
+app.use('/api/users',users)
 
 app.use(notfound)
 app.use(error)
