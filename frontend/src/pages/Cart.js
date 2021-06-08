@@ -25,7 +25,7 @@ const Cart = ({match,location,history}) => {
 
     
     
-      const checkoutHandler = () => {
+      const onCheckout = () => {
         history.push('/login?redirect=shipping')
       }
 
@@ -103,7 +103,7 @@ const Cart = ({match,location,history}) => {
                   type='button'
                   className='btn-block'
                   disabled={cartItems.length === 0}
-                  onClick={checkoutHandler}
+                  onClick={onCheckout}
                 >
                   Proceed To Checkout
                 </Button>

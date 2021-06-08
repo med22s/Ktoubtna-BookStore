@@ -27,7 +27,7 @@ const getLoggedUser=asyncHandler(async(req,res)=>{
   const user=await User.findById(req.user._id).select('-password')
 
   if (user) {
-    res.json({
+    return res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
@@ -39,6 +39,37 @@ const getLoggedUser=asyncHandler(async(req,res)=>{
   }
 
 })
+
+
+
+const updateUser=asyncHandler(async(req,res)=>{
+  let user=await User.findById(req.user._id)
+  const {name,email,password}=req.body
+
+  if (user) {
+    user.name=name || user.name
+    user.email=email || user.email
+    if(password) user.password=password
+
+    user=await user.save()
+
+
+    return res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateAuthToken(user._id)
+    })
+
+
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+
+})
+
 
 
 
@@ -68,4 +99,4 @@ const registerUser=asyncHandler(async (req,res)=>{
 })
 
 
-export {authUser,getLoggedUser,registerUser}
+export {authUser,getLoggedUser,registerUser,updateUser}
