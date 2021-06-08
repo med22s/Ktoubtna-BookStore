@@ -12,7 +12,7 @@ const {serverHost,serverPort} = require('../config/config');
 */
 const { APIError }            = require('../utils/errorHandler');
 
-const bookSchema=mongoose.Schema({
+const bookSchema = mongoose.Schema({
     user:{type:mongoose.Schema.Types.ObjectId,ref:'User',required:true},
     name:{type:String,required:true},
     author:{type:String,required:true},
@@ -30,21 +30,20 @@ const bookSchema=mongoose.Schema({
     numberInStock:{type:Number,required:true,default:0},
     numReviews:{type:Number,required:true,default:0}
 },
-/*{
+{
     toJSON: { virtuals: true },
-},*/
+},
 {timestamps:true})
 
 
 /*
 * virtual  Proporitie
 */
-/*
+
 bookSchema.virtual('imageUrl').get(function() {
-    console.log(this.image);
     return `http://${serverHost}:${serverPort}/${this.image}`;
 });
-*/
+
 /**
  * Methods
  */
@@ -113,7 +112,6 @@ bookSchema.statics = {
                         }).select('-__v');
             if(!book)
                 return Promise.reject(error);
-            //transform book
             return Promise.resolve(book);
         }
         return Promise.reject(error);
@@ -121,6 +119,6 @@ bookSchema.statics = {
 
 }
 
-const Book=mongoose.model('book',bookSchema);
+const Book = mongoose.model('book',bookSchema);
 
 module.exports = Book;

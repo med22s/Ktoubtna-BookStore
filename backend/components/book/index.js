@@ -9,6 +9,7 @@ const router = express.Router()
 const { isAuth }            = require('../../middlewares/auth/auth');
 const { inputValidation }   = require('../../middlewares/inputValidation');
 const {uploadImage}         = require('../../middlewares/uploadImage');
+const foundBook             = require('../../middlewares/book/foundBook');
 
 
 /*
@@ -64,6 +65,6 @@ router.post('/',isAuth(1),uploadImage('image'),bookSchema,inputValidation.valida
 * @private
 * create  Boook 
 */
-router.patch('/:id',isAuth(1),uploadImage('image'),bookSchema,inputValidation.validateInputWithFiles,updateBook);
+router.patch('/:id',isAuth(1),foundBook,uploadImage('image'),bookSchema,inputValidation.validateInputWithFiles,updateBook);
 
 module.exports = router

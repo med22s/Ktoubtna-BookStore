@@ -1,4 +1,4 @@
-const httpStatus = require('http-status');
+const httpStatus    = require('http-status');
 const asyncHandler  = require('express-async-handler');
 /*
 * services

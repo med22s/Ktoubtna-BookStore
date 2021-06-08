@@ -33,13 +33,7 @@ module.exports = class bookService {
     * @description  : get book by id
     */
     async getBookById(id) {
-        try {
-            let book = await BookModel.getBookById(id);
-            book     = book.transform(book.user);
-            return Promise.resolve(book);
-        } catch(error) {
-            return Promise.reject(error);
-        }
+        return await BookModel.getBookById(id);
     };
 
     /*
@@ -76,7 +70,6 @@ module.exports = class bookService {
         bookBody.user           = request.user._id;
         bookBody.image          = imagePath;
         let book                = await new BookModel(bookBody).save();
-        book                    = book.transform(request.user);
         return Promise.resolve(book);
     }
 
@@ -90,9 +83,8 @@ module.exports = class bookService {
             if (!request.file) {
                 return Promise.reject(new APIError('No image provided.',httpStatus.UNPROCESSABLE_ENTITY));
             }
-            const id                = request.params.id;
-            //get book
-            let book                = await BookModel.getBookById(id);
+            //get book from request
+            let book                = request.book;
             const oldImagePath      = path.join(__dirname,'..','..','public',book.image);
             //delete old Image
             deleteFile(oldImagePath);
@@ -101,8 +93,6 @@ module.exports = class bookService {
             request.body.imagePath  = newImagePath;
             //update this book
             book                    = await book.updateBook(request.body);
-            //transform book data 
-            book                    = book.transform(request.user);
             return Promise.resolve(book);
         } catch(error) {
             return Promise.reject(error);

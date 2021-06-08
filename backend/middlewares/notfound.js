@@ -1,5 +1,7 @@
+const httpStatus = require("http-status");
+const { APIError } = require("../utils/errorHandler");
+
 const notfound=(req,res,next)=>{
-    res.status(404)
-    next(new Error(`Error: ${req.originalUrl} not found`));
+    next(new APIError(`Error: ${req.originalUrl} not found`,httpStatus.NOT_FOUND));
 }
 module.exports = notfound
