@@ -32,17 +32,16 @@ module.exports = class authService {
     async signup(payload) {
         try {
             let registerPayload = ['name','email','password'];
-            const userBody = setUpObjectFields(payload,registerPayload);
-            let user = await new User(userBody).save();
+            const userBody      = setUpObjectFields(payload,registerPayload);
+            let user            = await new User(userBody).save();
             let transformedUser = user.transform();
             return Promise.resolve(transformedUser);
         } catch(error) {
             return Promise.reject(error);
         }
     }
-
     /*
-    * @params email,password,response for put coookie
+    *  @params email,password,response for put coookie
     *  login  :  1 - find user with this email
     *            2 - compare password
     *            3 - resolve userObj otherwise ApiError

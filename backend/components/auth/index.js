@@ -26,14 +26,14 @@ const router = express.Router()
 * @public
 * register new User
 */
-router.post('/register', schema.register, inputValidation, register);
+router.post('/register', schema.register, inputValidation.validateInput, register);
 
 /*
 * POST : /api/auth/login
 * @public
 * login user 
 */
-router.post('/login', schema.login, inputValidation, login);
+router.post('/login', schema.login, inputValidation.validateInput, login);
 
 /*
 * GET : /api/auth/token

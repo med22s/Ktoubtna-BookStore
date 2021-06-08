@@ -25,9 +25,9 @@ exports.isAuth =  (isAdmin = 0 ) => {
     return  async function (req,res,next) {
         try {
             const authHeader = req.headers.authorization;
+            const  unAthourizedError = new APIError('unAuthorized',httpStatus.UNAUTHORIZED);
             if (authHeader) {
                 const token = authHeader.split(' ')[1];
-                const  unAthourizedError = new APIError('unAuthorized',httpStatus.UNAUTHORIZED);
                 if(!token)
                 {
                     throw unAthourizedError;

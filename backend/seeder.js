@@ -1,13 +1,11 @@
-import mongoose from 'mongoose'
-import User from './Models/user.js'
-import Book from './Models/book.js'
-import users from './data/users.js'
-import books from './data/sampleBooks.js'
-import dotenv from 'dotenv'
-import dbConnection from './config/db.js'
+const  mongoose = require('mongoose');
 
+const  User     = require('./Models/user')       
+const  Book     = require('./Models/book.js')
+const  users    = require('./data/users.js');
+const  books    = require('./data/sampleBooks.js');
+const {dbConnection} = require('./config/db');
 
-dotenv.config();
 dbConnection();
 
 
@@ -18,8 +16,8 @@ const importData=async ()=>{
         await User.deleteMany()
         await Book.deleteMany()
 
-        const insertedUsers=await User.insertMany(users)
-        const userId=insertedUsers[0]._id
+        const insertedUsers = await User.insertMany(users)
+        const userId        = insertedUsers[0]._id
 
         await Book.insertMany(books.map(book=>{
             return {...book,user:userId}
@@ -28,7 +26,7 @@ const importData=async ()=>{
         process.exit(0)
 
     } catch (error) {
-        console.error(`Error : ${error.message}`)
+        console.error(`Error : ${error}`)
         process.exit(1)
     }
 
@@ -46,7 +44,7 @@ const destroyData=async ()=>{
         process.exit(0)
 
     } catch (error) {
-        console.error(`Error : ${error.message}`)
+        console.error(`Error : ${error}`)
         process.exit(1)
     }
 

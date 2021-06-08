@@ -1,31 +1,69 @@
 const express = require('express');
-const asyncHandler  = require('express-async-handler');
 const router = express.Router()
 
+
+
 /*
-* Models
+* middlewares
 */
-const Book = require('../../Models/book');
+const { isAuth }            = require('../../middlewares/auth/auth');
+const { inputValidation }   = require('../../middlewares/inputValidation');
+const {uploadImage}         = require('../../middlewares/uploadImage');
 
 
+/*
+* Book validators
+*/
+const bookSchema = require('./bookValidation');
+
+/*
+* Book Controller
+*/
+const {getBooks,getBookById,deleteBook,createBook,updateBook} = require('./bookController');
 
 /*
 * book routes
 */
 
-router.get('/',asyncHandler(async (req,res)=>{
-    const books = await Book.find()
-    res.json(books);
-}))
 
-router.get('/:id',asyncHandler(async(req,res)=>{
-    const book=await Book.findById(req.params.id)
-    if(!book) return res.status(404).json({message:'book not found'})
-    return res.json(book);
-})) 
+/*
+* GET : /api/books
+* @public
+* get Books
+*/
+router.get('/',getBooks);
 
 
-module.exports = router;
+/*
+* GET : /api/books/:id
+* @public
+* get one Boook by Id
+*/
+router.get('/:id',getBookById);
 
+
+/*
+* DELETE : /api/books/:id
+* @private
+* delete one Boook by Id
+*/
+router.delete('/:id',isAuth(1),deleteBook);
+
+
+
+/*
+* POST : /api/books/
+* @private
+* create  Boook 
+*/
+router.post('/',isAuth(1),uploadImage('image'),bookSchema,inputValidation.validateInputWithFiles,createBook);
+
+
+/*
+* PATCH : /api/books/:id
+* @private
+* create  Boook 
+*/
+router.patch('/:id',isAuth(1),uploadImage('image'),bookSchema,inputValidation.validateInputWithFiles,updateBook);
 
 module.exports = router

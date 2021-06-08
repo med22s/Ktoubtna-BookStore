@@ -65,9 +65,305 @@ const books=[
         numberInStock: 11,
         rating: 4.2,
         numReviews: 5
+    },
+    {
+        name: 'design pattern',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed dd',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A lldldl Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A jjdjdjd Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A kkdkdkdk Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed kdkkdkdk',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A jjdjjddjdj Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
+    },
+    {
+        name: 'A Severed Head',
+        author:'Iris Murdoch',
+        image: '/images/novel6.jpg',
+        description:"A Severed Head is a satirical, sometimes farcical 1961 novel by Iris Murdoch. It was Murdoch's fifth published novel. Primary themes include marriage, adultery, and incest within a group of civilised and educated people.",
+        genre: 'Philosophical Novel',
+        price: 88.66,
+        numberInStock: 11,
+        rating: 4.2,
+        numReviews: 5
     }
 
 ]   
 
-
-export default books
+module.exports = books
