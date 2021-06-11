@@ -22,11 +22,11 @@ const NavBar = () => {
             <Navbar  className='navbar navbar-expand-lg navbar-dark bg-primary' expand="lg" collapseOnSelect>
                 <Container >
                         <LinkContainer to='/'>
-                            <Navbar.Brand ><span className='logo color-me' >Ktoubtna</span></Navbar.Brand>
+                            <Navbar.Brand ><span className='logo color-me' >KTOUBTNA BOOKSTORE</span></Navbar.Brand>
                         </LinkContainer>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="mr-auto">
+                            <Nav className="ml-auto">
                             <LinkContainer to='/cart'>
                                 <Nav.Link><span className='color-me icons'> <i className='fas fa-shopping-cart'></i> CART</span></Nav.Link>
                             </LinkContainer>

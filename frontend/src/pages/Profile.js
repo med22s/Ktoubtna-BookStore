@@ -24,7 +24,7 @@ const Profile = ({history}) => {
       if (!user) {
         history.push('/login')
       }else{
-          if(!userInfo.name){
+          if(!userInfo){
             dispatch(getUserProfile('profile'))
           }else{
             setName(userInfo.name)

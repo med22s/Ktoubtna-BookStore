@@ -8,6 +8,10 @@ import Cart from './pages/Cart.js'
 import Login from './pages/Login.js'
 import Register from './pages/Register.js'
 import Profile from './pages/Profile.js'
+import Shipping from './pages/Shipping'
+import Payment from './pages/Payment'
+import SubmitOrder from './pages/SubmitOrder'
+import OrderDetails from './pages/OrderDetails'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 
 
@@ -25,6 +29,10 @@ function App() {
               <Route path='/Login' exact component={Login}></Route>
               <Route path='/register' exact component={Register}></Route>
               <Route path='/profile' exact component={Profile}></Route>
+              <Route path='/shipping' exact component={Shipping}></Route>
+              <Route path='/payment' exact component={Payment}></Route>
+              <Route path='/placeorder' exact component={SubmitOrder}></Route>
+              <Route path='/order/:id' exact component={OrderDetails}></Route>
             </Switch>
           </Container>
       </main>

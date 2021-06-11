@@ -46,7 +46,7 @@ const Register = ({ location, history }) => {
         <Form.Group controlId='name' className='py-2'>
           <Form.Label>Name</Form.Label>
           <Form.Control
-            type='text'
+            type='text' 
             placeholder='Enter your name'
             value={name}
             onChange={(e) => setName(e.target.value)}
