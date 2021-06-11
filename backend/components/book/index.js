@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router()
 
+/*
+* Config
+*/
+const { role }            = require('../../config/config');
 
 
 /*
@@ -48,7 +52,7 @@ router.get('/:id',getBookById);
 * @private
 * delete one Boook by Id
 */
-router.delete('/:id',isAuth(1),deleteBook);
+router.delete('/:id',isAuth(role.admin),deleteBook);
 
 
 
@@ -57,7 +61,7 @@ router.delete('/:id',isAuth(1),deleteBook);
 * @private
 * create  Boook 
 */
-router.post('/',isAuth(1),uploadImage('image'),bookSchema,inputValidation.validateInputWithFiles,createBook);
+router.post('/',isAuth(role.admin),uploadImage('image'),bookSchema,inputValidation.validateInputWithFiles,createBook);
 
 
 /*
@@ -65,6 +69,6 @@ router.post('/',isAuth(1),uploadImage('image'),bookSchema,inputValidation.valida
 * @private
 * create  Boook 
 */
-router.patch('/:id',isAuth(1),foundBook,uploadImage('image'),bookSchema,inputValidation.validateInputWithFiles,updateBook);
+router.patch('/:id',isAuth(role.admin),foundBook,uploadImage('image'),bookSchema,inputValidation.validateInputWithFiles,updateBook);
 
 module.exports = router

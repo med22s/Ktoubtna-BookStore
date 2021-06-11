@@ -55,7 +55,7 @@ module.exports = class authService {
                 if(isMatch)
                 {
                     const userObj = {
-                        id      : user._id,
+                        _id     : user._id,
                         name    : user.name,
                         emai    : user.email,
                         isAdmin : user.isAdmin
@@ -68,6 +68,7 @@ module.exports = class authService {
             return Promise.reject(error);
         }
     };
+    
     /*
     * @params userId,response for put refreshToken in coookies
     *  getToken  : 1 - find user with userId

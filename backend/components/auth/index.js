@@ -1,5 +1,8 @@
 const express = require('express');
-const { register, login, getToken, logout } = require('./authController');
+/*
+* Config
+*/
+const { role }            = require('../../config/config');
 
 /*
 * middlewares
@@ -11,7 +14,13 @@ const { inputValidation } = require('../../middlewares/inputValidation');
 /*
 * authSchema
 */
-const { schema } = require('./authValidation')
+const { schema } = require('./authValidation');
+
+/*
+* controllers
+*/
+const { register, login, getToken, logout } = require('./authController');
+
 
 
 const router = express.Router()
@@ -47,6 +56,6 @@ router.get('/token', refrechTokenAuth, getToken);
 * @private
 * logout user
 */
-router.post('/logout', isAuth(0), logout)
+router.post('/logout', isAuth(role.user), logout)
 
 module.exports = router

@@ -11,8 +11,15 @@ const {serverHost,serverPort} = require('../config/config');
 * utils
 */
 const { APIError }            = require('../utils/errorHandler');
+/*
+const reviewSchema = mongoose.Schema({
 
-const bookSchema = mongoose.Schema({
+},
+{
+
+})
+*/
+const bookSchema   = mongoose.Schema({
     user:{type:mongoose.Schema.Types.ObjectId,ref:'User',required:true},
     name:{type:String,required:true},
     author:{type:String,required:true},

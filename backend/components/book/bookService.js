@@ -20,7 +20,7 @@ module.exports = class bookService {
     * @return       : Promise<Books>
     * @description  : get books
     */
-    async getBooks(page = 1,limit) {
+    async getBooks(page,limit) {
         const MAX_PAGE_SIZE = 20;
         //if limit more than MAX_PAGE_SIZE just set limit to MAX_PAGE_SIZE       
         limit = Math.min(limit,MAX_PAGE_SIZE);              

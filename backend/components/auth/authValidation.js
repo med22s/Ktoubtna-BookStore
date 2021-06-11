@@ -8,14 +8,14 @@ const schema = {
         ,
         body('email').trim()
         .normalizeEmail().isEmail().withMessage("must be Valide Email")            ,
-        body('password').trim()
+        body('password').trim().isString().withMessage("password must be not just Numbers")
         .isLength({min : 6}).withMessage("password must be greather than 6")
         .isLength({max : 50}).withMessage("password must be less than 50")
     ],
     login : [
         body('email').trim()
         .normalizeEmail().isEmail().withMessage("must be Valide Email")            ,
-        body('password').trim().isString().withMessage("Name must be not just Numbers")
+        body('password').trim().isString().withMessage("password must be not just Numbers")
         .isLength({min : 6}).withMessage("password must be greather than 6")
         .isLength({max : 50}).withMessage("password must be less than 50")
     ]

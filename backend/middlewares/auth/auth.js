@@ -4,7 +4,7 @@ const httpStatus    = require('http-status');
 * Config
 */
 
-const {accessTokenSecret}            = require('../../config/config')
+const {role}            = require('../../config/config')
 
 
 /*
@@ -19,9 +19,9 @@ const { APIError } = require('../../utils/errorHandler');
 const tokenServiceClass = require('../../components/token/tokenService');
 
 /*
-* params isAdmin 0 its mean not etherwise admin
+* params isAdmin = user its mean not otherwise admin
 */
-exports.isAuth =  (isAdmin = 0 ) => {
+exports.isAuth =  (isAdmin = role.user ) => {
     return  async function (req,res,next) {
         try {
             const authHeader = req.headers.authorization;
@@ -40,13 +40,19 @@ exports.isAuth =  (isAdmin = 0 ) => {
                 ]);
                 let user                = promiseResults[0].user;
                 let isTokenInBlackList  = promiseResults[1];
-                if( user.isAdmin >= isAdmin && isTokenInBlackList === false )
+                //check if this user have role to access this action
+                if( user.isAdmin < isAdmin )
                 {
-                    req.user  = user;
-                    req.token = token;
-                    return next();
+                    throw new APIError('Token Not Valid',httpStatus.FORBIDDEN);
                 }
-                throw new APIError('Token Not Valid',httpStatus.FORBIDDEN);
+                //check if this access token in blackList Tokens
+                if( isTokenInBlackList === true )
+                {
+                    throw unAthourizedError;
+                }
+                req.user  = user;
+                req.token = token;
+                return next();
             }
             throw unAthourizedError;
         } catch(error) {

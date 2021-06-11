@@ -7,8 +7,8 @@ const bookServiceClass = require('./bookService');
 
 
 exports.getBooks = asyncHandler(async (req,res)=>{
-    const skip  = Math.abs(parseInt(req.query.skip));  // Make sure to parse the skip to number
-    const limit = Math.abs(parseInt(req.query.limit)); // Make sure to parse the limit to number
+    const skip  = Math.abs(parseInt(req.query.skip))  || 1;  // Make sure to parse the skip to number
+    const limit = Math.abs(parseInt(req.query.limit)) || 5; // Make sure to parse the limit to number
     //use BookService to get Books
     const bookService   = new bookServiceClass();
     const books         = await bookService.getBooks(skip,limit);

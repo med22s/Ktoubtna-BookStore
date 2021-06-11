@@ -21,15 +21,16 @@ module.exports = class tokenService {
             expiresIn: accessTokenExpiration
         })
     };
+    
     async getAccessToken(user,response)
     {
         try {
             //generate accessToken
             const accessToken  =  this.generateToken({user});
             //generate refreshToken
-            const refreshToken = refreshTokenModel.generate(user.id);
+            const refreshToken = refreshTokenModel.generate(user._id);
             //Add this refresh token to db
-            await refreshTokenModel.addRefreshToken(user.id,refreshToken);
+            await refreshTokenModel.addRefreshToken(user._id,refreshToken);
             // set new refreshToken in Cookies
             setRefreshTokenCookie(response,refreshToken);
             return Promise.resolve(accessToken);
@@ -44,11 +45,11 @@ module.exports = class tokenService {
             //generate accessToken
             const accessToken  =  this.generateToken({user});
             //generate refreshToken
-            const refreshToken = refreshTokenModel.generate(user.id);
+            const refreshToken = refreshTokenModel.generate(user._id);
             // Add new one  && update number Used For the old  RefereshToken 
             await Promise.all([ 
                 oldRefreshTokenObj.updateTokenNumberUsed(),
-                refreshTokenModel.addRefreshToken(user.id,refreshToken)
+                refreshTokenModel.addRefreshToken(user._id,refreshToken)
             ]);
             // set new refreshToken in Cookies
             setRefreshTokenCookie(response,refreshToken);

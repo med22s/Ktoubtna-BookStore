@@ -19,4 +19,8 @@ module.exports = {
     mongo: {
         uri: process.env.MONGO_URI
     },
+    role : {
+        user  : 0, 
+        admin : 1
+    } 
 };
