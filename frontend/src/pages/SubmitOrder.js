@@ -139,7 +139,7 @@ const SubmitOrder = ({history}) => {
           <Card>
             <ListGroup variant='flush'>
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h2>ORDER SUMMARY</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>

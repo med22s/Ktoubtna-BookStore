@@ -1,4 +1,7 @@
-import {ORDER_SAVE_REQUEST,ORDER_SAVE_SUCCESS,ORDER_SAVE_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL} from '../Types/orderTypes'
+import {ORDER_SAVE_REQUEST,ORDER_SAVE_SUCCESS,ORDER_SAVE_FAIL,
+     ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS,
+      ORDER_DETAILS_FAIL, ORDER_PAYMENT_REQUEST,
+       ORDER_PAYMENT_SUCCESS, ORDER_PAYMENT_FAIL, ORDER_PAYMENT_RESET} from '../Types/orderTypes'
 
 
 
@@ -37,6 +40,31 @@ export const orderDetailsReducer = (
           loading: false,
           error: action.payload,
         }
+      default:
+        return state
+    }
+  }
+
+
+
+  export const orderPaymentReducer = (state = {}, action) => {
+    switch (action.type) {
+      case ORDER_PAYMENT_REQUEST:
+        return {
+          loading: true
+        }
+      case ORDER_PAYMENT_SUCCESS:
+        return {
+          loading: false,
+          success: true
+        }
+      case ORDER_PAYMENT_FAIL:
+        return {
+          loading: false,
+          error: action.payload
+        }
+      case ORDER_PAYMENT_RESET:
+        return {}
       default:
         return state
     }

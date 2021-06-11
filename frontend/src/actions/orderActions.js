@@ -1,5 +1,6 @@
 import axios from 'axios'
-import {ORDER_SAVE_REQUEST,ORDER_SAVE_SUCCESS,ORDER_SAVE_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL} from '../Types/orderTypes'
+import {ORDER_SAVE_REQUEST,ORDER_SAVE_SUCCESS,ORDER_SAVE_FAIL, ORDER_DETAILS_REQUEST,
+     ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_PAYMENT_SUCCESS, ORDER_PAYMENT_FAIL, ORDER_PAYMENT_REQUEST} from '../Types/orderTypes'
 
 
 
@@ -25,6 +26,8 @@ export const saveOrder=(order)=>async(dispatch,getState)=>{
         ? error.response.data.msg
         : error.message
         dispatch({
+
+
         type: ORDER_SAVE_FAIL,
         payload: message
         })
@@ -60,5 +63,48 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
         type: ORDER_DETAILS_FAIL,
         payload: message
         })
+    }
+  }
+
+
+
+
+
+
+
+export const payOrder = (id, paymentResult) => async (
+    dispatch,
+    getState
+  ) => {
+    try {
+      dispatch({
+        type: ORDER_PAYMENT_REQUEST
+      })
+  
+    const {user}=getState().userLogin
+
+    const config={
+        headers:{'Content-Type':'application/json',
+        Authorization:`Bearer ${user.token}`}
+    }
+  
+      const { data } = await axios.put(
+        `/api/orders/${id}/payment`,
+        paymentResult,
+        config
+      )
+  
+      dispatch({
+        type: ORDER_PAYMENT_SUCCESS,
+        payload: data,
+      })
+    } catch (error) {
+      dispatch({
+        type: ORDER_PAYMENT_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      })
     }
   }
