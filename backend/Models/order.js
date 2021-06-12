@@ -8,7 +8,7 @@ const orderSchema=mongoose.Schema({
         quantity:{type:Number,required:true},
         image:{type:String,required:true},
         price:{type:Number,required:true},
-        book:{type:mongoose.Schema.Types.ObjectId,ref:'Book',required:true},
+        book:{type:mongoose.Schema.Types.ObjectId,ref:'Book',required:true}
     }],
     shippingDetails:{
         address:{type:String,required:true},

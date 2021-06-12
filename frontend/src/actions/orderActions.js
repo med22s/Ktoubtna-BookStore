@@ -1,6 +1,9 @@
 import axios from 'axios'
 import {ORDER_SAVE_REQUEST,ORDER_SAVE_SUCCESS,ORDER_SAVE_FAIL, ORDER_DETAILS_REQUEST,
-     ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_PAYMENT_SUCCESS, ORDER_PAYMENT_FAIL, ORDER_PAYMENT_REQUEST} from '../Types/orderTypes'
+     ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_PAYMENT_SUCCESS, ORDER_PAYMENT_FAIL, ORDER_PAYMENT_REQUEST, 
+     ORDER_PERSONAL_LIST_REQUEST,
+     ORDER_PERSONAL_LIST_SUCCESS,
+     ORDER_PERSONAL_LIST_FAIL} from '../Types/orderTypes'
 
 
 
@@ -102,8 +105,39 @@ export const payOrder = (id, paymentResult) => async (
       dispatch({
         type: ORDER_PAYMENT_FAIL,
         payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
+          error.response && error.response.data.msg
+            ? error.response.data.msg
+            : error.message,
+      })
+    }
+  }
+
+
+  export const getListPersonalOrders = () => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: ORDER_PERSONAL_LIST_REQUEST,
+      })
+  
+      const {user}=getState().userLogin
+
+    const config={
+        headers:{
+        Authorization:`Bearer ${user.token}`}
+    }
+  
+      const { data } = await axios.get(`/api/orders/myorders`, config)
+  
+      dispatch({
+        type: ORDER_PERSONAL_LIST_SUCCESS,
+        payload: data,
+      })
+    } catch (error) {
+      dispatch({
+        type: ORDER_PERSONAL_LIST_FAIL,
+        payload:
+          error.response && error.response.data.msg
+            ? error.response.data.msg
             : error.message,
       })
     }

@@ -19,9 +19,14 @@ app.use(express.json())
 app.use('/api/books',books)
 app.use('/api/users',users)
 app.use('/api/orders',orders)
+app.get('/api/config/paypal',(req,res)=>res.send(process.env.PAYPAL_CLIENT_ID))
 
 app.use(notfound)
 app.use(error)
+
+
+
+
 
 
 const PORT=process.env.PORT || 5000;
