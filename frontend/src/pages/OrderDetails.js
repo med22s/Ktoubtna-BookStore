@@ -75,7 +75,6 @@ const OrderDetails = ({match}) => {
 
 
     const onSuccess=(paymentResult)=>{
-        console.log(paymentResult)
         dispatch(payOrder(id,paymentResult))
     }
 

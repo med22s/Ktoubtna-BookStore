@@ -101,4 +101,13 @@ const registerUser=asyncHandler(async (req,res)=>{
 })
 
 
-export {authUser,getLoggedUser,registerUser,updateUser}
+
+const getAllUsers=asyncHandler(async(req,res)=>{
+  const users=await User.find({})
+
+  res.json(users)
+})
+
+
+
+export {authUser,getLoggedUser,registerUser,updateUser,getAllUsers}

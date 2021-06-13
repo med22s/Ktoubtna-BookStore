@@ -1,7 +1,7 @@
 import express from 'express'
 const router=express.Router()
-import {authUser,getLoggedUser,registerUser,updateUser} from '../controllers/userController.js'
-import {authMiddleware} from '../middlewares/auth.js'
+import {authUser,getLoggedUser,registerUser,updateUser,getAllUsers} from '../controllers/userController.js'
+import {authMiddleware,adminMiddleware} from '../middlewares/auth.js'
 
 
 
@@ -18,7 +18,7 @@ router.route('/profile').get(authMiddleware,getLoggedUser).put(authMiddleware,up
 // @desc    register  new user
 // @route   POST /api/users
 // @access  Public
-router.route('/').post(registerUser)
+router.route('/').post(registerUser).get(authMiddleware,adminMiddleware,getAllUsers)
 
 
 
