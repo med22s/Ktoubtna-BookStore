@@ -4,7 +4,7 @@ import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { getUsersList } from '../actions/userActions'
+import { getUsersList,deleteUser } from '../actions/userActions'
 
 const UserList = ({history}) => {
 
@@ -13,6 +13,9 @@ const UserList = ({history}) => {
 
     const { loading, error, users } = useSelector((state) => state.userList)
     const {user} = useSelector((state) => state.userLogin)
+
+
+    const { success } = useSelector((state) => state.userDelete)
   
     useEffect(() => {
         // send the request here to get all users
@@ -22,10 +25,12 @@ const UserList = ({history}) => {
             history.push('/login')
         }
       
-    }, [dispatch,user,history])
+    }, [dispatch,user,history,success])
   
     const onDelete = (id) => {
-      console.log('delete')
+        if (window.confirm('Are you sure you want to delete this user ?')) {
+            dispatch(deleteUser(id))
+        }
     }
 
 
@@ -57,22 +62,22 @@ const UserList = ({history}) => {
                 </tr>
               </thead>
               <tbody>
-                {users.map((user) => (
-                  <tr key={user._id}>
-                    <td>{user._id}</td>
-                    <td>{user.name}</td>
+                {users.map((item) => (
+                  <tr key={item._id}>
+                    <td>{item._id}</td>
+                    <td>{item.name}</td>
                     <td>
-                      <a href={`mailto:${user.email}`}>{user.email}</a>
+                      <a href={`mailto:${item.email}`}>{item.email}</a>
                     </td>
                     <td>
-                      {user.isAdmin ? (
+                      {item.isAdmin ? (
                         <i className='fas fa-check' style={{ color: 'green' }}></i>
                       ) : (
                         <i className='fas fa-times' style={{ color: 'red' }}></i>
                       )}
                     </td>
                     <td className='users-details'>
-                      <LinkContainer to={`/user/${user._id}/edit`}>
+                      <LinkContainer to={`/admin/user/${item._id}/edit`}>
                         <Button variant='light' className='btn-sm'>
                           <i className='fas fa-edit'></i>
                         </Button>
@@ -80,7 +85,7 @@ const UserList = ({history}) => {
                       <Button
                         variant='danger'
                         className='btn-sm'
-                        onClick={() => onDelete(user._id)}
+                        onClick={() => onDelete(item._id)}
                       >
                         <i className='fas fa-trash'></i>
                       </Button>

@@ -1,9 +1,13 @@
 import express from 'express'
 const router=express.Router()
-import {authUser,getLoggedUser,registerUser,updateUser,getAllUsers} from '../controllers/userController.js'
+import {authUser,getLoggedUser,registerUser,updateUser,getAllUsers,deleteUser,editUser,getUserById} from '../controllers/userController.js'
 import {authMiddleware,adminMiddleware} from '../middlewares/auth.js'
 
 
+// @desc    register  new user
+// @route   POST /api/users
+// @access  Public
+router.route('/').post(registerUser).get(authMiddleware,adminMiddleware,getAllUsers)
 
 // @desc    auth user and get token
 // @route   GET /api/users/login
@@ -15,10 +19,14 @@ router.route('/login').post(authUser)
 // @access  Private
 router.route('/profile').get(authMiddleware,getLoggedUser).put(authMiddleware,updateUser)
 
-// @desc    register  new user
-// @route   POST /api/users
-// @access  Public
-router.route('/').post(registerUser).get(authMiddleware,adminMiddleware,getAllUsers)
+router.route('/:id').delete(authMiddleware,adminMiddleware,deleteUser)
+.get(authMiddleware,adminMiddleware,getUserById)
+.put(authMiddleware,adminMiddleware,editUser)
+
+
+
+
+
 
 
 

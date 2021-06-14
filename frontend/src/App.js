@@ -13,6 +13,7 @@ import Payment from './pages/Payment'
 import SubmitOrder from './pages/SubmitOrder'
 import OrderDetails from './pages/OrderDetails'
 import UserList from './pages/UserList'
+import UserEdit from './pages/UserEdit'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 
 
@@ -35,6 +36,7 @@ function App() {
               <Route path='/placeorder' exact component={SubmitOrder}></Route>
               <Route path='/order/:id' exact component={OrderDetails}></Route>
               <Route path='/admin/userlist' exact component={UserList}></Route>
+              <Route path='/admin/user/:id/edit' exact component={UserEdit}></Route>
             </Switch>
           </Container>
       </main>

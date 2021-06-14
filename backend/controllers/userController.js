@@ -68,7 +68,6 @@ const updateUser=asyncHandler(async(req,res)=>{
     throw new Error('User not found')
   }
 
-  
 
 })
 
@@ -108,6 +107,57 @@ const getAllUsers=asyncHandler(async(req,res)=>{
   res.json(users)
 })
 
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+
+  if (user) {
+    await user.remove()
+    return res.json({ message: 'User removed' })
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
 
 
-export {authUser,getLoggedUser,registerUser,updateUser,getAllUsers}
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select('-password')
+
+  if (user) {
+    return res.json(user)
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
+
+
+
+const editUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+
+  if (user) {
+    console.log(user)
+    user.name = req.body.name || user.name
+    user.email = req.body.email || user.email
+    user.isAdmin = req.body.isAdmin
+
+    const {_id,name,email,isAdmin} = await user.save()
+
+    res.json({
+      _id,
+      name,
+      email,
+      isAdmin
+    })
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
+
+
+
+
+
+export {authUser,getLoggedUser,registerUser,updateUser,getAllUsers,deleteUser,getUserById,editUser}
