@@ -15,12 +15,12 @@ const { inputValidation }   = require('../../middlewares/inputValidation');
 
 
 /*
-* Book validators
+* user validators
 */
 const userSchema = require('./userValidation');
 
 /*
-* Book Controller
+* user Controller
 */
 const {getUsers,getUserById,deleteUser,deleteLoggedInUser,updateUser,updateProfile} = require('./userController');
 const foundUser             = require('../../middlewares/user/foundUser');
@@ -71,7 +71,7 @@ router.patch('/:id',isAuth(role.admin),foundUser,userSchema.updateUser,inputVali
 
 
 /*
-* PATCH : /api/users/:id
+* PATCH : /api/users/
 * @private
 * update Profile  loggedIn user 
 */

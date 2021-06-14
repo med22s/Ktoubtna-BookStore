@@ -2,7 +2,7 @@ const express = require('express');
 /*
 * Config
 */
-const { role }            = require('../../config/config');
+const { role } = require('../../config/config');
 
 /*
 * middlewares

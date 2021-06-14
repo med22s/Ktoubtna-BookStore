@@ -67,7 +67,7 @@ router.post('/',isAuth(role.admin),uploadImage('image'),bookSchema,inputValidati
 /*
 * PATCH : /api/books/:id
 * @private
-* create  Boook 
+* update  Boook 
 */
 router.patch('/:id',isAuth(role.admin),foundBook,uploadImage('image'),bookSchema,inputValidation.validateInputWithFiles,updateBook);
 

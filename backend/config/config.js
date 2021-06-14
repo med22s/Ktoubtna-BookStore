@@ -11,7 +11,7 @@ module.exports = {
 
     hashRounds: process.env.NODE_ENV  !== 'production' ? 1 : process.env.HASHROUNDS,
 
-    accessTokenSecret: process.env.ACCESS_Token_SECRET,
+    accessTokenSecret : process.env.ACCESS_Token_SECRET,
     refreshTokenSecret: process.env.REFRESH_Token_SECRET,
     accessTokenExpiration: process.env.ACCESS_TOKEN_EXPIRATION,
     refreshTokenExpiration: process.env.REFRESH_TOKEN_EXPIRATION,
