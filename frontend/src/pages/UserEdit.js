@@ -6,7 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormWrapper from '../components/FormWrapper'
 import { getUserProfile ,updateUser} from '../actions/userActions'
-import { USER_UPDATE_RESET } from '../Types/userTypes'
+import { USER_UPDATE_RESET,USER_PROFILE_RESET } from '../Types/userTypes'
 
 const UserEdit = ({match,history}) => {
 
@@ -28,7 +28,9 @@ const UserEdit = ({match,history}) => {
     useEffect(() => {
 
         if(success){
+          console.log(userInfo)
             dispatch({type:USER_UPDATE_RESET})
+            dispatch({type:USER_PROFILE_RESET})
             history.push('/admin/userlist')
         }else{
             if (!userInfo.name || userInfo._id !== userId) {
@@ -39,8 +41,6 @@ const UserEdit = ({match,history}) => {
                 setIsAdmin(userInfo.isAdmin)
               }
         }
-
-        
       }, [dispatch, userId, userInfo,success,history])
 
 
@@ -49,7 +49,6 @@ const UserEdit = ({match,history}) => {
         dispatch(updateUser({ _id: userId, name, email, isAdmin }))
       }
 
-    
 return (
     <>
       <Link to='/admin/userlist' className='btn btn-dark my-3'>

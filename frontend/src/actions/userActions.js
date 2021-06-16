@@ -234,7 +234,7 @@ export const getUsersList = () => async (dispatch, getState) => {
   }
 
 
-  export const updateUser = (user) => async (dispatch, getState) => {
+  export const updateUser = (userUpdate) => async (dispatch, getState) => {
     try {
       dispatch({
         type: USER_UPDATE_REQUEST,
@@ -249,7 +249,7 @@ export const getUsersList = () => async (dispatch, getState) => {
         }
       }
   
-      const { data } = await axios.put(`/api/users/${user._id}`, user, config)
+      const { data } = await axios.put(`/api/users/${userUpdate._id}`, userUpdate, config)
 
       console.log(data)
   

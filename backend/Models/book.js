@@ -11,7 +11,12 @@ const bookSchema=mongoose.Schema({
     reviews:[new mongoose.Schema({
         name:{type:String,required:true},
         rating:{type:Number,required:true},
-        message:{type:String,required:true}
+        message:{type:String,required:true},
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'User'
+          }
     },{timestamps:true})],
     rating:{type:Number,required:true,default:0},
     price:{type:Number,required:true,default:0},

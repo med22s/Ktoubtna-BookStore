@@ -6,6 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getUserProfile,updateUserProfile } from '../actions/userActions'
 import { getListPersonalOrders } from '../actions/orderActions'
+import {USER_UPDATE_PROFILE_RESET } from '../Types/userTypes'
 
 const Profile = ({history}) => {
 
@@ -32,16 +33,22 @@ const Profile = ({history}) => {
       if (!user) {
         history.push('/login')
       }else{
-          if(!userInfo.name){
+          if(!userInfo || !userInfo.name || updated){
+
+            setTimeout(() => {
+              dispatch({type:USER_UPDATE_PROFILE_RESET})
             dispatch(getUserProfile('profile'))
             dispatch(getListPersonalOrders())
+            }, 1000);
+
+            
+            
           }else{
             setName(userInfo.name)
             setEmail(userInfo.email)
-              
           }
       }
-    }, [dispatch,history,userInfo,user])
+    }, [dispatch,history,userInfo,user,updated])
   
     const onSubmit = (e) => {
       e.preventDefault()
