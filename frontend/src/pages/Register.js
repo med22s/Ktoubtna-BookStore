@@ -17,15 +17,15 @@ const Register = ({ location, history }) => {
   const dispatch = useDispatch()
 
   const userRegister = useSelector((state) => state.userRegister)
-  const { loading, error, user } = userRegister
+  const { loading, error, success } = userRegister
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {
-    if (user) {
-      history.push(redirect)
+    if (success) {
+      history.push('/login')
     }
-  }, [history, user, redirect])
+  }, [history, success, redirect])
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -40,13 +40,15 @@ const Register = ({ location, history }) => {
     <FormWrapper>
       <h1>Sign Up</h1>
       {message && <Message variant='danger'>{message}</Message>}
-      {error && <Message variant='danger'>{error}</Message>}
+      {error && error.length>0 && error.map(err=>(
+        <Message variant='danger'>{err.msg}</Message>
+      )) }
       {loading && <Loader />}
       <Form onSubmit={onSubmit}>
         <Form.Group controlId='name' className='py-2'>
           <Form.Label>Name</Form.Label>
           <Form.Control
-            type='text' 
+            type='text'
             placeholder='Enter your name'
             value={name}
             onChange={(e) => setName(e.target.value)}

@@ -1,10 +1,10 @@
-import mongoose from 'mongoose'
-import User from './Models/user.js'
-import Book from './Models/book.js'
-import users from './data/users.js'
-import books from './data/sampleBooks.js'
-import dotenv from 'dotenv'
-import dbConnection from './config/db.js'
+const mongoose =require('mongoose') 
+const User =require('./Models/user.js') 
+const Book =require('./Models/book.js') 
+const users =require('./data/users.js') 
+const books =require('./data/sampleBooks.js') 
+const dotenv =require('dotenv') 
+const dbConnection =require('./config/db.js') 
 
 
 dotenv.config();

@@ -1,17 +1,17 @@
-import express from 'express'
-import {addOrder,getSingleOrderById,updateOrderAsPaid,getMyOrders} from '../controllers/orderController.js'
-import {authMiddleware} from '../middlewares/auth.js'
+const express =require('express')
+const {addOrder,getSingleOrderById,updateOrderAsPaid,getMyOrders} =require( '../controllers/orderController.js')
+const {isAuth} = require('../middlewares/auth/auth') 
 
 const router=express.Router()
 
 
 
-router.route('/').post(authMiddleware,addOrder)
-router.route('/myorders').get(authMiddleware, getMyOrders)
+router.route('/').post(isAuth(0),addOrder)
+router.route('/myorders').get(isAuth(0), getMyOrders)
 
-router.route('/:id').get(authMiddleware,getSingleOrderById)
+router.route('/:id').get(isAuth(0),getSingleOrderById)
 
-router.route('/:id/payment').put(authMiddleware,updateOrderAsPaid)
+router.route('/:id/payment').put(isAuth(0),updateOrderAsPaid)
 
 
-export default router
+module.exports= router

@@ -46,7 +46,7 @@ const NavBar = () => {
                                 </Nav.Link>
                                 </LinkContainer>
                             )}
-                                {user && user.isAdmin && (
+                                {user && user.isAdmin===1 && (
                                     <NavDropdown title='Admin' id='adminmenu'>
                                     <LinkContainer to='/admin/userlist'>
                                         <NavDropdown.Item>Users</NavDropdown.Item>

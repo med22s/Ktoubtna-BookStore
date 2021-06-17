@@ -17,9 +17,68 @@ import UserEdit from './pages/UserEdit'
 import BookList from './pages/BookList'
 import BookEdit from './pages/BookEdit'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
+import axios from 'axios'
+import {useDispatch} from 'react-redux'
+import {USER_LOGIN_SUCCESS} from './Types/userTypes'
 
 
 function App() {
+
+ 
+
+let isRefreshed = false;
+const dispatch=useDispatch()
+
+
+axios.interceptors.response.use((response)=>{
+  console.log(response)
+  return response
+},async  (error)=>{
+  const originalRequest = error.config;
+  if(error.response.status === 403 && !isRefreshed)
+  {
+    console.log('access token expires!');
+    isRefreshed = true;
+    const data = await refreshAccessToken();
+    console.log('data',data);
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + 'test';
+    /*dispatch({
+      type:USER_LOGIN_SUCCESS,
+      payload:user
+      
+  })*/
+    return axios(originalRequest);
+  }
+  else if(error.response.status === 401)
+  {
+    //logout user
+    console.log('logout!!');
+
+  }
+  return Promise.reject(error);
+})
+
+const  refreshAccessToken = async () =>  {
+  try {
+    const config={
+      headers:{
+          'Content-Type':'application/json'
+      }
+    }
+    const data = await axios.get(`/api/auth/token`,config)
+    return data;
+  } catch (error) {
+    console.log('should logout');
+    console.error(error)
+    return error;
+  }
+}
+
+
+
+
+
+
   return (
     <Router>
       <Header/>

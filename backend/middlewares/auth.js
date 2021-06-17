@@ -1,6 +1,6 @@
-import User from '../Models/user.js'
-import asyncHandler from 'express-async-handler'
-import jwt from 'jsonwebtoken'
+const User = require ('../Models/user.js')
+const asyncHandler = require ('express-async-handler')
+const jwt = require ('jsonwebtoken')
 
 
 const authMiddleware=asyncHandler(async(req,res,next)=>{
@@ -40,4 +40,4 @@ const adminMiddleware = (req, res, next) => {
 
 
 
-export {authMiddleware,adminMiddleware}
+module.exports= {authMiddleware,adminMiddleware}

@@ -1,44 +1,15 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import books from './routes/books.js'
-import users from './routes/users.js'
-import orders from './routes/orders.js'
-import upload from './routes/upload.js'
-import dbConnection from "./config/db.js";
-import error from './middlewares/error.js'
-import notfound from './middlewares/notfound.js'
-import path from 'path'
+const  app              = require('./config/express');
+const  dbConnection   = require('./config/db.js');
+const config            = require('./config/config');
 
-const app=express();
 
-dotenv.config();
+// open mongoose connection
 dbConnection();
 
-
-app.use(express.json())
-
-
-app.use('/api/books',books)
-app.use('/api/users',users)
-app.use('/api/orders',orders)
-app.use('/api/upload',upload)
-app.get('/api/config/paypal',(req,res)=>res.send(process.env.PAYPAL_CLIENT_ID))
-
-const __dirname = path.resolve()
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
-
-app.use(notfound)
-app.use(error)
+// listen to requests
+app.listen(config.serverPort, () =>  {
+        console.log(`server started on port ${config.serverPort} (${config.nodeEnv})`);
+    } 
+);
 
 
-
-
-
-
-const PORT=process.env.PORT || 5000;
-
-
-
-app.listen(PORT,()=>{
-    console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-})

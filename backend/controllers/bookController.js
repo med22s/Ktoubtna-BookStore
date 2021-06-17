@@ -1,5 +1,5 @@
-import Book from '../Models/book.js'
-import asyncHandler from 'express-async-handler'
+const Book = require( '../Models/book.js')
+const asyncHandler = require('express-async-handler')
 
 const getBooks=asyncHandler(async(req,res)=>{
     const books=await Book.find()
@@ -79,7 +79,7 @@ const deleteBook = asyncHandler(async (req, res) => {
   })
 
 
-export {
+module.exports= {
     getBooks,
     getBookById,
     deleteBook,

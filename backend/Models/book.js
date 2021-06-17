@@ -1,5 +1,4 @@
-import mongoose from 'mongoose'
-
+const mongoose=require('mongoose')
 
 const bookSchema=mongoose.Schema({
     user:{type:mongoose.Schema.Types.ObjectId,ref:'User',required:true},
@@ -26,4 +25,4 @@ const bookSchema=mongoose.Schema({
 
 const Book=mongoose.model('book',bookSchema);
 
-export default Book;
+module.exports= Book;

@@ -1,7 +1,7 @@
-import express from 'express'
-import {getBooks,getBookById} from '../controllers/bookController.js'
-import {authMiddleware,adminMiddleware} from '../middlewares/auth.js'
-import { deleteBook,createBook,updateBook } from '../controllers/bookController.js'
+const express =require('express') 
+const {getBooks,getBookById} =require('../controllers/bookController.js') 
+const {authMiddleware,adminMiddleware} =require( '../middlewares/auth.js')
+const { deleteBook,createBook,updateBook } =require('../controllers/bookController.js') 
 
 
 
@@ -14,4 +14,4 @@ router.route('/:id').get(getBookById).delete(authMiddleware,adminMiddleware,dele
 .put(authMiddleware,adminMiddleware,updateBook)
 
 
-export default router
+module.exports= router

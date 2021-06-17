@@ -1,4 +1,4 @@
-import {USER_LOGIN_REQUEST,USER_LOGIN_SUCCESS,USER_LOGIN_FAIL,
+import {USER_LOGIN_REQUEST,USER_LOGIN_SUCCESS,
      USER_LOGOUT, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS,
       USER_REGISTER_FAIL, USER_PROFILE_REQUEST, USER_PROFILE_SUCCESS, USER_PROFILE_FAIL,
       USER_UPDATE_PROFILE_REQUEST,
@@ -22,7 +22,10 @@ export const loginUser=(email,password)=>async (dispatch)=>{
             }
         }
 
-        const {data}=await axios.post('/api/users/login',{email,password},config)
+
+
+
+        const {data}=await axios.post('/api/auth/login',{email,password},config)
 
         
         dispatch({
@@ -31,18 +34,19 @@ export const loginUser=(email,password)=>async (dispatch)=>{
         })
         
         localStorage.setItem('user', JSON.stringify(data))
+        localStorage.setItem('token', JSON.stringify(data.token))
         
     } catch (error) {
 
-        dispatch({
-            type: USER_LOGIN_FAIL,
-            payload:
-              error.response && error.response.data.msg
-                ? error.response.data.msg
-                : error.message
-        })
-        
-    }
+      dispatch({
+          type: USER_REGISTER_FAIL,
+          payload:
+            error.response && error.response.data.errors
+              ? error.response.data.errors :  error.response.data.msg ? [{msg : error.response.data.msg}]
+              : [{msg : error.message}]
+      })
+      
+  }
 
 }
 
@@ -61,7 +65,7 @@ export const registerUser=(name,email,password)=>async (dispatch)=>{
             }
         }
 
-        const {data}=await axios.post('/api/users',{name,email,password},config)
+        const {data}=await axios.post('/api/auth/register',{name,email,password},config)
 
         
         dispatch({
@@ -69,21 +73,18 @@ export const registerUser=(name,email,password)=>async (dispatch)=>{
             payload:data
         })
 
-        dispatch({
-            type:USER_LOGIN_SUCCESS,
-            payload:data
-        })
         
-        localStorage.setItem('user', JSON.stringify(data))
+        
+        //localStorage.setItem('user', JSON.stringify(data))
         
     } catch (error) {
 
         dispatch({
             type: USER_REGISTER_FAIL,
             payload:
-              error.response && error.response.data.msg
-                ? error.response.data.msg
-                : error.message
+              error.response && error.response.data.errors
+                ? error.response.data.errors :  error.response.data.msg ? [{msg : error.response.data.msg}]
+                : [{msg : error.message}]
         })
         
     }
@@ -267,8 +268,19 @@ export const getUsersList = () => async (dispatch, getState) => {
     }
   }
 
+  // export const GenerateTokenByRefreshToken=() => async (dispatch) =>{
 
+  //   axios.interceptors.response.use(function(response){
+  //     dispatch({type:ACCESS_TOKEN_VALID,payload:response})
+  // },function(error){
+  //     if(error.status===401){
+  //       dispatch({type:USER_LOGOUT})
+  //     }else{
+  //         return  dispatch({type:ACCESS_TOKEN_VALID,payload:response})
+  //     }
+  // })
 
+  // }
 
 
 
