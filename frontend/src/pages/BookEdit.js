@@ -6,7 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormWrapper from '../components/FormWrapper'
 import { bookDetails,updateBook } from '../actions/bookActions'
-import { BOOK_UPDATE_RESET } from '../Types/bookTypes'
+import { BOOK_DETAILS_RESET, BOOK_UPDATE_RESET } from '../Types/bookTypes'
 import axios from 'axios'
 
 const BookEdit = ({match,history}) => {
@@ -60,6 +60,7 @@ const BookEdit = ({match,history}) => {
   useEffect(() => {
       dispatch({type:BOOK_UPDATE_RESET})
       if(successUpdate){
+        dispatch({type:BOOK_DETAILS_RESET})
         history.push('/admin/booklist')
       }else{
         if (!book || !book.name || book._id !== bookId) {
