@@ -5,18 +5,24 @@ import {listBooks} from '../actions/bookActions'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import {Row,Col} from 'react-bootstrap'
-const Home = () => {
+import Paginate from '../components/Paginate'
+import BooksCarousel from '../components/BooksCarousel'
+const Home = ({match}) => {
     const dispatch=useDispatch()
 
-    useEffect(()=>{
-        dispatch(listBooks())
-    },[dispatch])
+    const keyword = match.params.keyword
+    const pageNumber = match.params.pageNumber || 1
 
-    const {books,error,loading}=useSelector(state=>state.bookList)
+    useEffect(()=>{
+        dispatch(listBooks(keyword,pageNumber))
+    },[dispatch,keyword,pageNumber])
+
+    const {books,error,loading,pages,page}=useSelector(state=>state.bookList)
 
     return (
         
         <>
+        {!keyword && <BooksCarousel />}
             <h1>Top Rated Books</h1>
             <>
 
@@ -32,6 +38,14 @@ const Home = () => {
                         </Row>
                     </>
                 }
+                <div className='pagination'>
+                    <Paginate
+                        pages={pages}
+                        page={page}
+                        keyword={keyword ? keyword : ''}
+                    />
+                </div>
+                
             </>
         </>
     )

@@ -35,11 +35,11 @@ const Profile = ({history}) => {
       }else{
           if(!userInfo || !userInfo.name || updated){
 
-            setTimeout(() => {
+            // fix the alert here
+           
               dispatch({type:USER_UPDATE_PROFILE_RESET})
             dispatch(getUserProfile('profile'))
             dispatch(getListPersonalOrders())
-            }, 1000);
 
             
             

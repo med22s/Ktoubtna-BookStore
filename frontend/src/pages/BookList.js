@@ -6,14 +6,15 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listBooks,deleteBook,addBook } from '../actions/bookActions'
 import { BOOK_CREATE_RESET } from '../Types/bookTypes'
+import Paginate from '../components/Paginate'
 
-const BookList = ({history}) => {
+const BookList = ({history,match}) => {
 
-
+  const pageNumber = match.params.pageNumber || 1
 
     const dispatch = useDispatch()
 
-  const { loading, error, books } = useSelector((state) => state.bookList)
+  const { loading, error, books,pages,page } = useSelector((state) => state.bookList)
 
   const {user} = useSelector((state) => state.userLogin)
 
@@ -30,9 +31,9 @@ const BookList = ({history}) => {
       if (successCreate) {
         history.push(`/admin/book/${createdbook._id}/edit`)
       } else {
-        dispatch(listBooks())
+        dispatch(listBooks('',pageNumber))
       }
-  }, [dispatch, history, user,success,successCreate,createdbook])
+  }, [dispatch, history, user,success,successCreate,createdbook,pageNumber])
 
   const onDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this book !')) {
@@ -70,6 +71,7 @@ const BookList = ({history}) => {
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
+        <>
         <Table striped bordered hover responsive className='table-sm'>
           <thead>
             <tr>
@@ -107,6 +109,8 @@ const BookList = ({history}) => {
             ))}
           </tbody>
         </Table>
+        <Paginate pages={pages} page={page} isAdmin={true} />
+        </>
       )}
     </>
   )

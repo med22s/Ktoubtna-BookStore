@@ -1,17 +1,17 @@
 import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Card,Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { PayPalButton } from 'react-paypal-button-v2'
-import { ORDER_PAYMENT_RESET } from '../Types/orderTypes'
+import { ORDER_PAYMENT_RESET,ORDER_DELIVER_RESET } from '../Types/orderTypes'
 import axios from 'axios'
 import {
-  getOrderDetails,payOrder
+  getOrderDetails,payOrder,deliverOrder
 } from '../actions/orderActions'
 
-const OrderDetails = ({match}) => {
+const OrderDetails = ({match,history}) => {
 
     const id=match.params.id
 
@@ -27,6 +27,13 @@ const OrderDetails = ({match}) => {
 
     const orderPayment = useSelector((state) => state.orderPayment)
     const { loading: loadingPayment, success } = orderPayment
+
+
+    const orderDeliver = useSelector((state) => state.orderDeliver)
+    const { loading: loadingDeliver, success: successDeliver } = orderDeliver
+  
+    const userLogin = useSelector((state) => state.userLogin)
+    const { user } = userLogin
 
     if (!loading) {
         //   Calculate prices
@@ -59,8 +66,14 @@ const OrderDetails = ({match}) => {
 
     
       useEffect(() => {
-        if(!order || order._id !== id || success) {
+
+        if (!user) {
+          history.push('/login')
+        }
+
+        if(!order || order._id !== id || success || successDeliver) {
             dispatch({ type: ORDER_PAYMENT_RESET })
+            dispatch({ type: ORDER_DELIVER_RESET })
             // to prevent and endless loop 
             dispatch(getOrderDetails(id))
         }else if (!order.isPaid) {
@@ -70,12 +83,18 @@ const OrderDetails = ({match}) => {
               setSdk(true)
             }
         }
-    }, [order, id,dispatch,success])
+    }, [order, id,dispatch,success,successDeliver,user,history])
 
 
 
     const onSuccess=(paymentResult)=>{
         dispatch(payOrder(id,paymentResult))
+    }
+
+
+    const onDeliver=()=>{
+      // deliver 
+      dispatch(deliverOrder(order))
     }
 
 
@@ -204,7 +223,18 @@ const OrderDetails = ({match}) => {
                   )}
                 </ListGroup.Item>
               )}
-
+              {loadingDeliver && <Loader />}
+              {user && user.isAdmin && order.isPaid && !order.isDelivered && (
+                <ListGroup.Item>
+                  <Button
+                    type='button'
+                    className='btn btn-block'
+                    onClick={onDeliver}
+                  >
+                    Mark As Delivered
+                  </Button>
+                </ListGroup.Item>
+              )}
             </ListGroup>
           </Card>
         </Col>

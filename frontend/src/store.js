@@ -1,11 +1,11 @@
 import {createStore,combineReducers,applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import {bookListReducer,bookDetailsReducer,bookDeleteReducer, bookCreateReducer, bookUpdateReducer} from './reducers/bookReducers'
+import {bookListReducer,bookDetailsReducer,bookDeleteReducer, bookCreateReducer, bookUpdateReducer, bookAddReviewReducer, bookTopRatedReducer} from './reducers/bookReducers'
 import {cartReducer} from './reducers/cartReducers'
 import {userLoginReducer,userRegisterReducer,userProfileReducer,userUpdateProfileReducer, userListReducer,
      userDeleteReducer,userUpdateReducer} from './reducers/userReducers'
-import {orderSaveReducer,orderDetailsReducer,orderPaymentReducer,orderListPersonalReducer} from './reducers/orderReducers'
+import {orderSaveReducer,orderDetailsReducer,orderPaymentReducer,orderListPersonalReducer, orderListReducer, orderDeliverReducer} from './reducers/orderReducers'
 
 const allReducers=combineReducers({
     bookList:bookListReducer,
@@ -13,6 +13,8 @@ const allReducers=combineReducers({
     bookCreate:bookCreateReducer,
     bookDelete:bookDeleteReducer,
     bookUpdate:bookUpdateReducer,
+    bookAddReview:bookAddReviewReducer,
+    bookTopRated:bookTopRatedReducer,
     cart:cartReducer,
     userLogin:userLoginReducer,
     userRegister:userRegisterReducer,
@@ -24,7 +26,9 @@ const allReducers=combineReducers({
     orderSave:orderSaveReducer,
     orderDetails:orderDetailsReducer,
     orderPayment:orderPaymentReducer,
-    orderListPersonal:orderListPersonalReducer
+    orderListPersonal:orderListPersonalReducer,
+    orderList:orderListReducer,
+    orderDeliver:orderDeliverReducer
 });
 
 

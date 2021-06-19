@@ -8,6 +8,7 @@ import dbConnection from "./config/db.js";
 import error from './middlewares/error.js'
 import notfound from './middlewares/notfound.js'
 import path from 'path'
+import morgan from 'morgan'
 
 const app=express();
 
@@ -16,6 +17,10 @@ dbConnection();
 
 
 app.use(express.json())
+
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+}
 
 
 app.use('/api/books',books)

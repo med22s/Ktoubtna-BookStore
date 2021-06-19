@@ -6,16 +6,33 @@ import {useDispatch,useSelector} from 'react-redux'
 import {bookDetails} from '../actions/bookActions'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
+import {addBookReview} from '../actions/bookActions'
+import { BOOK_ADD_REVIEW_RESET } from '../Types/bookTypes'
 
 const BookDetails = ({match,history}) => {
 
     const dispatch=useDispatch()
     const [qty,setQty]=useState(1)
+    const [rating, setRating] = useState(0)
+    const [message, setMessage] = useState('')
+
+    const { user } = useSelector((state) => state.userLogin)
+
+  const {
+    success: successBookReview,
+    error: errorBookReview,
+  } = useSelector((state) => state.bookAddReview)
 
 
     useEffect(()=>{
+        if(successBookReview){
+            alert('Review Added !')
+            dispatch({type:BOOK_ADD_REVIEW_RESET})
+            setMessage('')
+            setRating(0)
+        }
        dispatch(bookDetails(match.params.id))
-    },[dispatch,match]) // eslint-disable-line react-hooks/exhaustive-deps
+    },[dispatch,match,successBookReview]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
 
@@ -25,6 +42,17 @@ const BookDetails = ({match,history}) => {
 
 
     const {book,loading,error}=useSelector(state=>state.bookDetails)
+
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        dispatch(
+          addBookReview(match.params.id, {
+            rating,
+            message,
+          })
+        )
+      }
 
     return (
         <>
@@ -126,6 +154,66 @@ const BookDetails = ({match,history}) => {
                     </ListGroup>
                 </Col>
             </Row>
+
+
+            <Row>
+            <Col md={6}>
+              <h2>Reviews</h2>
+              {book.reviews && book.reviews.length === 0 && <Message>No Reviews</Message>}
+              <ListGroup variant='flush'>
+                {book.reviews.map((review) => (
+                  <ListGroup.Item key={review._id}>
+                    <strong>{review.name}</strong>
+                    <Rating rating={review.rating} />
+                    <p>{review.createdAt.substring(0, 10)}</p>
+                    <p>{review.message}</p>
+                  </ListGroup.Item>
+                  
+                ))}
+                <ListGroup.Item>
+                  <h2>Write a Customer Review</h2>
+                  {errorBookReview && (
+                    <Message variant='danger'>{errorBookReview}</Message>
+                  )}
+                  {user ? (
+                    <Form onSubmit={onSubmit}>
+                      <Form.Group controlId='rating'>
+                        <Form.Label>Rating</Form.Label>
+                        <Form.Control className='form-select' 
+                          as='select'
+                          value={rating}
+                          onChange={(e) => setRating(e.target.value)}
+                        >
+                          <option value=''>Select...</option>
+                          <option value='1'>1 - Poor</option>
+                          <option value='2'>2 - Fair</option>
+                          <option value='3'>3 - Good</option>
+                          <option value='4'>4 - Very Good</option>
+                          <option value='5'>5 - Excellent</option>
+                        </Form.Control>
+                      </Form.Group>
+                      <Form.Group controlId='message'>
+                        <Form.Label>Message</Form.Label>
+                        <Form.Control
+                          as='textarea'
+                          row='3'
+                          value={message}
+                          onChange={(e) => setMessage(e.target.value)}
+                        ></Form.Control>
+                      </Form.Group>
+                      <Button type='submit' variant='primary' className='my-3'>
+                        Submit
+                      </Button>
+                    </Form>
+                  ) : (
+                    <Message >
+                      Please <Link to='/login'>sign in</Link> to write a review{' '}
+                    </Message>
+                  )}
+                </ListGroup.Item>
+              </ListGroup>
+            </Col>
+          </Row>
             
                 
 

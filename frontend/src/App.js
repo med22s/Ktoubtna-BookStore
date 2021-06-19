@@ -16,6 +16,7 @@ import UserList from './pages/UserList'
 import UserEdit from './pages/UserEdit'
 import BookList from './pages/BookList'
 import BookEdit from './pages/BookEdit'
+import OrderList from './pages/OrderList'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 
 
@@ -39,8 +40,21 @@ function App() {
               <Route path='/order/:id' exact component={OrderDetails}></Route>
               <Route path='/admin/userlist' exact component={UserList}></Route>
               <Route path='/admin/booklist' exact component={BookList}></Route>
+              <Route path='/admin/orderlist' exact component={OrderList}></Route>
               <Route path='/admin/user/:id/edit' exact component={UserEdit}></Route>
               <Route path='/admin/book/:id/edit' exact component={BookEdit}></Route>
+              <Route path='/search/:keyword' exact component={Home} />
+              <Route
+                path='/admin/bookList/:pageNumber'
+                component={BookList}
+                exact
+              />
+              <Route path='/page/:pageNumber' component={Home} exact />
+              <Route
+                path='/search/:keyword/page/:pageNumber'
+                component={Home}
+                exact
+              />
             </Switch>
           </Container>
       </main>
