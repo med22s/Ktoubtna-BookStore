@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import io from "socket.io-client";
 
 import TextContainer from '../components/TextContainer';
-import Messages from '../components/Message';
+import Messages from '../components/Messages';
 import InfoBar from '../components/InfoBar';
 import Input from '../components/Input';
 import {useSelector,useDispatch} from 'react-redux'

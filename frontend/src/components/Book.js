@@ -7,7 +7,7 @@ const Book = ({book}) => {
     return (
         <Card className='my-3 p-3 rounded'>
       <Link to={`/book/${book._id}`}>
-        <Card.Img src={book.imageUrl} variant='top' />
+        <Card.Img src={book.image} variant='top' />
       </Link>
 
       <Card.Body>
