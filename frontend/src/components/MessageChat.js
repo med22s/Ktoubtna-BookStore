@@ -16,7 +16,7 @@ const MessageChat = ({ message: { text, user }, name }) => {
       ? (
         <div className="messageContainer justifyEnd">
           <p className="sentText pr-10">{trimmedName}</p>
-          <div className="messageBox backgroundBlue">
+          <div className="messageBox bg-success">
             <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
           </div>
         </div>
