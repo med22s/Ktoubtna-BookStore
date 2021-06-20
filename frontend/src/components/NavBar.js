@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {Navbar,Nav,Container, NavDropdown} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import {logout} from '../actions/userActions'
@@ -9,9 +9,15 @@ import Search from './Search'
 
 const NavBar = () => {
 
-
-    const {user}=useSelector(state=>state.userLogin)
+  const {user}=useSelector(state=>state.userLogin)
     const dispatch=useDispatch()
+
+  useEffect(()=>{
+    console.log(user)
+  },[user])
+
+
+    
 
 
     const onLogout=()=>{

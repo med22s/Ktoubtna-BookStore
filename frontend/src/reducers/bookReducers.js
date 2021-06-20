@@ -1,5 +1,5 @@
 import {BOOK_LIST_REQUEST,BOOK_LIST_SUCCESS,BOOK_LIST_FAIL
-    ,BOOK_DETAILS_FAIL,BOOK_DETAILS_REQUEST,BOOK_DETAILS_SUCCESS, BOOK_DELETE_REQUEST, BOOK_DELETE_SUCCESS, BOOK_DELETE_FAIL, BOOK_CREATE_REQUEST, BOOK_CREATE_SUCCESS, BOOK_CREATE_FAIL, BOOK_CREATE_RESET, BOOK_UPDATE_REQUEST, BOOK_UPDATE_SUCCESS, BOOK_UPDATE_FAIL, BOOK_UPDATE_RESET, BOOK_ADD_REVIEW_REQUEST, BOOK_ADD_REVIEW_SUCCESS, BOOK_ADD_REVIEW_FAIL, BOOK_ADD_REVIEW_RESET, BOOK_TOP_REQUEST, BOOK_TOP_SUCCESS, BOOK_TOP_FAIL, BOOK_DETAILS_RESET, BOOK_DETAILS_RESET_SUCCESS} from '../Types/bookTypes'
+    ,BOOK_DETAILS_FAIL,BOOK_DETAILS_REQUEST,BOOK_DETAILS_SUCCESS, BOOK_DELETE_REQUEST, BOOK_DELETE_SUCCESS, BOOK_DELETE_FAIL, BOOK_CREATE_REQUEST, BOOK_CREATE_SUCCESS, BOOK_CREATE_FAIL, BOOK_CREATE_RESET, BOOK_UPDATE_REQUEST, BOOK_UPDATE_SUCCESS, BOOK_UPDATE_FAIL, BOOK_UPDATE_RESET, BOOK_ADD_REVIEW_REQUEST, BOOK_ADD_REVIEW_SUCCESS, BOOK_ADD_REVIEW_FAIL, BOOK_ADD_REVIEW_RESET, BOOK_TOP_REQUEST, BOOK_TOP_SUCCESS, BOOK_TOP_FAIL, BOOK_DETAILS_RESET} from '../Types/bookTypes'
 
 
 export const bookListReducer=(state={books:[]},action)=>{
@@ -23,17 +23,13 @@ export const bookDetailsReducer=(state={book:{reviews:[]}},action)=>{
 
     switch(action.type){
         case BOOK_DETAILS_REQUEST:
-            return {book:{},loading:true}
+            return {books:[],loading:true}
         case BOOK_DETAILS_SUCCESS:
-          console.log(action.paylaod)
-            return {loading:false,book:action.payload,success:true}
+            return {...state,loading:false,book:action.payload,success:true}
         case BOOK_DETAILS_FAIL:
-            return {loading:false,error:action.payload}
+            return {...state,loading:false,error:action.payload}
         case BOOK_DETAILS_RESET:
             return {}
-        case BOOK_DETAILS_RESET_SUCCESS:
-          console.log({...state.book,success:false})
-            return {...state,success:false}
         default:
             return state
     }

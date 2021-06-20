@@ -162,6 +162,8 @@ export const updateUserProfile=(userData)=>async (dispatch,getState)=>{
           type: USER_LOGIN_SUCCESS,
           payload: data,
         })
+
+        localStorage.setItem('user', JSON.stringify(data))
         
     } catch (error) {
 
