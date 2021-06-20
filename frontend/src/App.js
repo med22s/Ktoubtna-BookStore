@@ -17,6 +17,7 @@ import UserEdit from './pages/UserEdit'
 import BookList from './pages/BookList'
 import BookEdit from './pages/BookEdit'
 import OrderList from './pages/OrderList'
+import Chat from './pages/Chat'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
 
 
@@ -44,6 +45,7 @@ function App() {
               <Route path='/admin/user/:id/edit' exact component={UserEdit}></Route>
               <Route path='/admin/book/:id/edit' exact component={BookEdit}></Route>
               <Route path='/search/:keyword' exact component={Home} />
+               <Route path='/chat' exact component={Chat} />
               <Route
                 path='/admin/bookList/:pageNumber'
                 component={BookList}

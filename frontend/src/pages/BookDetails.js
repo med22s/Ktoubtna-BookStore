@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import {Link} from 'react-router-dom'
 import {Row,Col,Image,ListGroup,Form,Button} from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import Rating from '../components/Rating'
 import {useDispatch,useSelector} from 'react-redux'
 import {bookDetails} from '../actions/bookActions'
@@ -142,13 +143,20 @@ const BookDetails = ({match,history}) => {
                         <Button
                         onClick={addToCart}
                         style={{width:'100%'}}
-                        className='btn-cart'
+                        
                         type='button'
                         disabled={book.numberInStock === 0}
                         >
                         Add To Cart
                         </Button>
                     </ListGroup.Item>
+
+                    {user && book && (<ListGroup.Item><LinkContainer className='btn-success' style={{width:'100%'}}  to={`/chat?name=${user.name}&book=${book}&room=${book._id}`}>
+
+                        <Button  >
+                        Join Chat
+                        </Button>
+                    </LinkContainer></ListGroup.Item>)}
 
                    
                     </ListGroup>

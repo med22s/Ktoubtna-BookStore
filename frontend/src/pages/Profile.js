@@ -33,13 +33,14 @@ const Profile = ({history}) => {
       if (!user) {
         history.push('/login')
       }else{
+          dispatch(getListPersonalOrders())
           if(!userInfo || !userInfo.name || updated){
 
             // fix the alert here
            
               dispatch({type:USER_UPDATE_PROFILE_RESET})
             dispatch(getUserProfile('profile'))
-            dispatch(getListPersonalOrders())
+            
 
             
             
