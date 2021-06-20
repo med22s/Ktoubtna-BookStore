@@ -39,7 +39,6 @@ export const bookDetails=(id)=>async (dispatch)=>{
         const {data}=await axios.get(`/api/books/${id}`)
         dispatch({type:BOOK_DETAILS_SUCCESS,payload:data})
     } catch (error) {
-
         dispatch({
             type:BOOK_DETAILS_FAIL,
             payload:error.response && error.response.data.msg ? error.response.data.msg : error.message

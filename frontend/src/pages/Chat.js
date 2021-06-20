@@ -47,8 +47,9 @@ const Chat = ({ history,location }) => {
     socket.emit('join', { name, room }, (error) => {
       if(error) {
         alert(error);
-        //history.push('/') not working
-
+        // socket.emit('logout',{room},(error)=>{
+        //   console.error(error)
+        // })
       }
     });
   }, [location.search,book]);
@@ -67,7 +68,7 @@ const Chat = ({ history,location }) => {
     e.preventDefault();
 
     if(message) {
-      socket.emit('sendMessage', message, () => setMessage(''));
+      socket.emit('sendMessage', message,name.trim().toLowerCase(), () => setMessage(''));
     }
   }
 

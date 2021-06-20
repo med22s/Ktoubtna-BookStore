@@ -68,11 +68,25 @@ const PORT=process.env.PORT || 5000;
 
 io.on('connect', (socket) => {
     socket.on('join', ({ name, room }, callback) => {
-      const { error, user } = addUser({ id: socket.id, name, room });
+      let { error, user,userChanged,msg } = addUser({ id: socket.id, name, room });
+
+      console.log('join',socket.id)
+
+
+      if(msg && userChanged){
+        socket.leave(userChanged.room)
+        userChanged.room=room
+        user=userChanged
+        socket.join(room);
+        console.log('case 1',user)
+      }else if(user){
+        socket.join(user.room);
+        console.log('case 2',user)
+      }else if(error){
+        return callback(error);
+      }
   
-      if(error) return callback(error);
-  
-      socket.join(user.room);
+      
 
       // emit a message 
   
@@ -87,8 +101,12 @@ io.on('connect', (socket) => {
       callback();
     });
   
-    socket.on('sendMessage', (message, callback) => {
-      const user = getUser(socket.id);
+    socket.on('sendMessage', (message,name, callback) => {
+      console.log(name)
+      const user = getUser(name);
+
+      console.log('user',user)
+      console.log('socketid',socket.id)
   
       io.to(user.room).emit('message', { user: user.name, text: message });
   
@@ -103,6 +121,19 @@ io.on('connect', (socket) => {
         io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
       }
     })
+
+    // socket.on('logout', (room,callback) => {
+    //   const user = removeUser(socket.id);
+    //   console.log(user)
+    //   if(user){
+    //     socket.leave(room)
+    //   }
+
+    //   callback()
+    // })
+
+
+
   });
 
 
