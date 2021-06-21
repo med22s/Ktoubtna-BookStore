@@ -148,10 +148,7 @@ export const deleteBook = (id) => async (dispatch, getState) => {
 
       dispatch({
         type: BOOK_UPDATE_FAIL,
-        payload:
-          error.response && error.response.data.errors
-            ? error.response.data.errors
-            :[{ msg : error.message}] ,
+        payload:error.response && error.response.data.msg ? error.response.data.msg : error.message
       })
     }
   }
@@ -206,8 +203,8 @@ export const deleteBook = (id) => async (dispatch, getState) => {
       dispatch({
         type: BOOK_TOP_FAIL,
         payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
+          error.response && error.response.data.msg
+            ? error.response.data.msg
             : error.message,
       })
     }

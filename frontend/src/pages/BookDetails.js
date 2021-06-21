@@ -9,6 +9,7 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import {addBookReview} from '../actions/bookActions'
 import { BOOK_ADD_REVIEW_RESET } from '../Types/bookTypes'
+import Meta from '../components/Meta'
 
 const BookDetails = ({match,history}) => {
 
@@ -41,9 +42,8 @@ const BookDetails = ({match,history}) => {
           setMessage('')
           setRating(0)
       }
-      if(!book || !book.name)
         dispatch(bookDetails(match.params.id))
-  },[dispatch,match,successBookReview,book]) // eslint-disable-line react-hooks/exhaustive-deps
+  },[dispatch,match,successBookReview]) // eslint-disable-line react-hooks/exhaustive-deps
 
     console.log('boook',book);
     const onSubmit = (e) => {

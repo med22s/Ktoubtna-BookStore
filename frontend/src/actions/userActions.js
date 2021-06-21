@@ -22,9 +22,6 @@ export const loginUser=(email,password)=>async (dispatch)=>{
             }
         }
 
-
-
-
         const {data}=await axios.post('/api/auth/login',{email,password},config)
 
         
@@ -37,12 +34,13 @@ export const loginUser=(email,password)=>async (dispatch)=>{
         
     } catch (error) {
 
+      console.log('error response',error.response.data.msg)
+      console.log('error',error)
+
       dispatch({
-          type: USER_REGISTER_FAIL,
-          payload:
-            error.response && error.response.data.errors
-              ? error.response.data.errors :  error.response.data.msg ? [{msg : error.response.data.msg}]
-              : [{msg : error.message}]
+
+          type: USER_LOGIN_FAIL,
+          payload:error.response && error.response.data.msg ? error.response.data.msg : error.message
       })
       
   }
@@ -80,10 +78,7 @@ export const registerUser=(name,email,password)=>async (dispatch)=>{
 
         dispatch({
             type: USER_REGISTER_FAIL,
-            payload:
-              error.response && error.response.data.errors
-                ? error.response.data.errors :  error.response.data.msg ? [{msg : error.response.data.msg}]
-                : [{msg : error.message}]
+            payload:error.response && error.response.data.msg ? error.response.data.msg : error.message
         })
         
     }

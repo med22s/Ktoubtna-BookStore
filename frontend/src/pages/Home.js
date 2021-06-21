@@ -8,6 +8,7 @@ import {Row,Col} from 'react-bootstrap'
 import Meta from '../components/Meta'
 import Paginate from '../components/Paginate'
 import BooksCarousel from '../components/BooksCarousel'
+import {Link} from 'react-router-dom'
 const Home = ({match}) => {
     const dispatch=useDispatch()
 
@@ -16,6 +17,7 @@ const Home = ({match}) => {
 
     useEffect(()=>{
         dispatch(listBooks(keyword,pageNumber))
+        //dispatch({type:BOOK_DETAILS_RESET})
     },[dispatch,keyword,pageNumber])
 
     const {books,error,loading,pages,page}=useSelector(state=>state.bookList)

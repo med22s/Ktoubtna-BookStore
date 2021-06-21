@@ -13,13 +13,14 @@ const BookEdit = ({match,history}) => {
     const [name, setName] = useState('')
   const [price, setPrice] = useState(0)
   const [image, setImage] = useState('')
+  const [imageFile, setImageFile] = useState('')
   const [author, setAuthor] = useState('')
   const [genre, setGenre] = useState('')
   const [numberInStock, setNumberInStock] = useState(0)
   const [description, setDescription] = useState('')
-  const formData = new FormData()
   const uploadFile = async (e) => {
     const file = e.target.files[0];
+    setImageFile(file);
     setImage(file.name);
   }
 
@@ -37,7 +38,6 @@ const BookEdit = ({match,history}) => {
   } = useSelector((state) => state.bookUpdate)
 
   useEffect(() => {
-      
       if(successUpdate){
         dispatch({type:BOOK_DETAILS_RESET})
         dispatch({type:BOOK_UPDATE_RESET})
@@ -62,8 +62,9 @@ const BookEdit = ({match,history}) => {
     e.preventDefault();
    
     // UPDATE book
-    if(image!=='')
-      formData.append('image',image);
+    const formData = new FormData()
+    if(imageFile!=='')
+      formData.append('image',imageFile);
     formData.append('name',name);
     formData.append('price',price)
     formData.append('author',author)
@@ -86,9 +87,7 @@ const BookEdit = ({match,history}) => {
       <FormWrapper>
         <h1>Edit Book</h1>
         {loadingUpdate && <Loader />}
-        {errorUpdate && errorUpdate.length > 0 &&  errorUpdate.map(error => {
-          return <Message variant='danger'>{error.msg}</Message>
-        })} 
+        {errorUpdate &&  <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (
           <Loader />
         ) : error ? (

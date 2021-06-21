@@ -8,7 +8,7 @@ const bookServiceClass = require('./bookService');
 
 exports.getBooks = asyncHandler(async (req,res)=>{
     const pageNumber  = Math.abs(parseInt(req.query.pageNumber))  || 1;  // Make sure to parse the pageNumber to number
-    const limit = Math.abs(parseInt(req.query.limit)) || 5; // Make sure to parse the limit to number
+    const limit = Math.abs(parseInt(req.query.limit)) || 4; // Make sure to parse the limit to number
     const keyword = req.query.keyword
     ? {
         name: {

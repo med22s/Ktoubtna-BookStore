@@ -16,6 +16,10 @@ const Login = ({history,location}) => {
 
     const {user,loading,error} = useSelector((state) => state.userLogin)
 
+    console.log('loading login',loading)
+    console.log('error login',error)
+
+
     const redirect=location.search ? location.search.split('=')[1] : '/'
 
 
@@ -34,9 +38,8 @@ const Login = ({history,location}) => {
     return (
     <FormWrapper>
         <h1>Sign In</h1>
-        {error && error.length > 0 &&  error.map(err => {
-            return <Message variant='danger'>{err.msg}</Message>
-        })} 
+        {error && <Message variant='danger'>{error}</Message>
+        }
         {loading && <Loader />}
         <Form onSubmit={onSubmit}>
             <Form.Group controlId='email' className='py-3'>

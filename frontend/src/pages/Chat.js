@@ -7,16 +7,17 @@ import Messages from '../components/Messages';
 import InfoBar from '../components/InfoBar';
 import Input from '../components/Input';
 import {useSelector,useDispatch} from 'react-redux'
-import {bookDetails} from '../actions/bookActions'
+import { USER_LOGOUT } from "../Types/userTypes";
 
 
 
 let socket;
 
-const Chat = ({ history,location }) => {
+const Chat = ({history,location }) => {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const {book}=useSelector(state=>state.bookDetails)
+  const {user}=useSelector(state=>state.userLogin)
   const dispatch=useDispatch()
   const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
@@ -30,20 +31,27 @@ const Chat = ({ history,location }) => {
     //   console.log('im here')
     //   dispatch(bookDetails(bookId))
     // } 
-    
 
-    const connectionOptions =  {
-      "force new connection" : true,
-      "reconnectionAttempts": "Infinity", 
-      "timeout" : 10000,                  
-      "transports" : ["websocket"]
-  };
 
-  socket = io.connect('http://localhost:5000',connectionOptions);
+    if(!user || !user.name){
+      dispatch({type:USER_LOGOUT})
+      history.push('/')
+    }else {
+      const connectionOptions =  {
+        "force new connection" : true,
+        "reconnectionAttempts": "Infinity", 
+        "timeout" : 10000,                  
+        "transports" : ["websocket"]
+    };
+
+
+
+    socket = io.connect('http://localhost:5000',connectionOptions);
 
     setRoom(room)
     setName(name)
-    
+
+
     socket.emit('join', { name, room }, (error) => {
       if(error) {
         alert(error);
@@ -52,8 +60,38 @@ const Chat = ({ history,location }) => {
         // })
       }
     });
-  }, [location.search,book]);
+
+  }
+    
+
+    
+
   
+    
+    
+  }, [location.search,book,user]);
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   useEffect(() => {
     socket.on('message', message => {
       setMessages(messages => [ ...messages, message ]);
@@ -64,6 +102,20 @@ const Chat = ({ history,location }) => {
     });
 }, []);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const sendMessage = (e) => {
     e.preventDefault();
 
@@ -71,6 +123,19 @@ const Chat = ({ history,location }) => {
       socket.emit('sendMessage', message,name.trim().toLowerCase(), () => setMessage(''));
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="outerContainer">

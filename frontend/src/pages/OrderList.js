@@ -78,7 +78,7 @@ const OrderList = ({ history,match }) => {
           </tbody>
         </Table>
       )}
-      <Paginate pages={pages} page={page} isAdmin={true} order={true} />
+      <Paginate pages={pages} page={page} isAdmin={1} order={true} />
     </>
   )
 }

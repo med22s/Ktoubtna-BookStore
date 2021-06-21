@@ -47,7 +47,13 @@ const Profile = ({history}) => {
     const onSubmit = (e) => {
       e.preventDefault()
       if (password !== confirmPassword) {
+
         setMessage('Passwords do not match')
+        setTimeout(() => {
+          setMessage('')
+        }, 2000);
+
+        
       } else {
         dispatch(updateUserProfile({name,email,password,confirmPassword}))
       }

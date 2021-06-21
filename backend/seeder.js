@@ -11,7 +11,6 @@ const dbConnection =require('./config/db.js')
 dotenv.config();
 dbConnection();
 
-
 const importData=async ()=>{
     
 
@@ -39,7 +38,9 @@ const importData=async ()=>{
 const destroyData=async ()=>{
     
     try {
-        await RefreshToken.deleteMany();
+        await User.deleteMany()
+        await Book.deleteMany()
+
         
         console.log('database data destroyed !!');
         process.exit(0)

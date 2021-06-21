@@ -40,9 +40,7 @@ const Register = ({ location, history }) => {
     <FormWrapper>
       <h1>Sign Up</h1>
       {message && <Message variant='danger'>{message}</Message>}
-      {error && error.length>0 && error.map(err=>(
-        <Message variant='danger'>{err.msg}</Message>
-      )) }
+      {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={onSubmit}>
         <Form.Group controlId='name' className='py-2'>
