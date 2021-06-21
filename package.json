@@ -1,0 +1,51 @@
+{
+  "name": "Ktoubtna",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "express-validator": "^6.12.0",
+    "http-status": "^1.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment-timezone": "^0.5.33",
+    "mongoose": "^5.12.7",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.6.2",
+    "query-string": "^7.0.0",
+    "react-emoji": "^0.5.0",
+    "react-scroll-to-bottom": "^4.1.2",
+    "socket.io": "^4.1.2",
+    "socket.io-client": "^4.1.2"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.2",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "import-data": "node backend/seeder.js",
+    "destroy-data": "node backend/seeder.js -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/med22s/Ktoubtna-BookStore.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/med22s/Ktoubtna-BookStore/issues"
+  },
+  "homepage": "https://github.com/med22s/Ktoubtna-BookStore#readme"
+}
