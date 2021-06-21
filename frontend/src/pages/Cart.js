@@ -36,13 +36,13 @@ const Cart = ({match,location,history}) => {
             <h1 style={{marginBottom:'20px'}}>Shopping Cart</h1>
         <Col md={8}>
           
-          {cartItems.length === 0 ? (
+          {!cartItems || cartItems.length === 0 ? (
             <Message>
               Your cart is empty <Link to='/'>Go Back</Link>
             </Message>
           ) : (
             <ListGroup variant='flush'>
-              {cartItems.map((item) => (
+              {cartItems && cartItems.map((item) => (
                 <ListGroup.Item key={item.book}>
                   <Row>
                     <Col md={2}>
@@ -89,12 +89,12 @@ const Cart = ({match,location,history}) => {
             <ListGroup variant='flush'>
               <ListGroup.Item>
                 <h2>
-                  Subtotal ({cartItems.reduce((acc, item) => acc + item.quantity, 0)})
+                  Subtotal ({cartItems && cartItems.reduce((acc, item) => acc + item.quantity, 0)})
                   items
                 </h2>
                 Total Price: 
                 $
-                {cartItems
+                {cartItems && cartItems
                   .reduce((acc, item) => acc + item.quantity * item.price, 0)
                   .toFixed(2)}
               </ListGroup.Item>
@@ -102,7 +102,7 @@ const Cart = ({match,location,history}) => {
                 <Button
                   type='button'
                   className='btn-block'
-                  disabled={cartItems.length === 0}
+                  disabled={ cartItems && cartItems.length === 0}
                   onClick={onCheckout}
                 >
                   Proceed To Checkout

@@ -8,6 +8,7 @@ import InfoBar from '../components/InfoBar';
 import Input from '../components/Input';
 import {useSelector,useDispatch} from 'react-redux'
 import { USER_LOGOUT } from "../Types/userTypes";
+import {bookDetails} from '../actions/bookActions'
 
 
 
@@ -33,14 +34,19 @@ const Chat = ({history,location }) => {
     // } 
 
 
+    if(!book || !book.name){
+      dispatch(bookDetails(room))
+    }
+
+
     if(!user || !user.name){
       dispatch({type:USER_LOGOUT})
       history.push('/')
     }else {
       const connectionOptions =  {
         "force new connection" : true,
-        "reconnectionAttempts": "Infinity", 
-        "timeout" : 10000,                  
+        "reconnectionAttempts": "Infinity",
+        "timeout" : 10000,
         "transports" : ["websocket"]
     };
 

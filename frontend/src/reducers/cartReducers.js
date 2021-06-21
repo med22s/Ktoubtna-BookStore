@@ -1,4 +1,4 @@
-import {ADD_CART_ITEM,REMOVE_CART_ITEM,CART_ERROR, CART_SHIPPING_DETAILS, CART_PAYMENT_METHOD} from '../Types/cartTypes'
+import {ADD_CART_ITEM,REMOVE_CART_ITEM,CART_ERROR, CART_SHIPPING_DETAILS, CART_PAYMENT_METHOD, CART_RESET} from '../Types/cartTypes'
 
 export const cartReducer=(state={cartItems:[],shippingDetails: {}},action)=>{
 
@@ -36,7 +36,8 @@ export const cartReducer=(state={cartItems:[],shippingDetails: {}},action)=>{
         
         case CART_ERROR:
             return {...state,error:action.payload}
-
+            case CART_RESET:
+                return {}
         default:
             return state
     }

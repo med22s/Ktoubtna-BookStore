@@ -123,7 +123,7 @@ const SubmitOrder = ({history}) => {
                           />
                         </Col>
                         <Col>
-                          <Link to={`/book/${item.product}`}>
+                          <Link to={`/book/${item.book}`}>
                             {item.name}
                           </Link>
                         </Col>

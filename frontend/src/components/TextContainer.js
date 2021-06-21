@@ -6,7 +6,7 @@ const TextContainer = ({ users,book }) => (
   <div className="textContainer">
     <div>
       {book && <h1>  <span role="img" aria-label="emoji">{book.name}💬</span></h1>}
-      <h2>{book && book.author} <span role="img" aria-label="emoji">❤️</span></h2>
+      <h2>{book && book.author} <span role="img" aria-label="emoji"></span></h2>
       <h2>share your thoughts about the book right now! <span role="img" aria-label="emoji">⬅️</span></h2>
     </div>
     {

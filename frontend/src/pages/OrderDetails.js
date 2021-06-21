@@ -10,6 +10,7 @@ import axios from 'axios'
 import {
   getOrderDetails,payOrder,deliverOrder
 } from '../actions/orderActions'
+import { CART_RESET } from '../Types/cartTypes'
 
 const OrderDetails = ({match,history}) => {
 
@@ -74,6 +75,8 @@ const OrderDetails = ({match,history}) => {
         if(!order || order._id !== id || success || successDeliver) {
             dispatch({ type: ORDER_PAYMENT_RESET })
             dispatch({ type: ORDER_DELIVER_RESET })
+            localStorage.removeItem('cart')
+            dispatch({type:CART_RESET})
             // to prevent and endless loop 
             dispatch(getOrderDetails(id))
         }else if (!order.isPaid) {

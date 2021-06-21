@@ -23,6 +23,7 @@ import axios from 'axios'
 import {useDispatch} from 'react-redux'
 import {USER_LOGIN_SUCCESS} from './Types/userTypes'
 import {logout} from './actions/userActions'
+import UserReset from './pages/UserReset'
 
 
 function App() {
@@ -141,6 +142,7 @@ return (
             <Route path='/admin/orderlist' exact component={OrderList}></Route>
             <Route path='/admin/user/:id/edit' exact component={UserEdit}></Route>
             <Route path='/admin/book/:id/edit' exact component={BookEdit}></Route>
+            <Route path='/Reset' exact component={UserReset}></Route>
             <Route path='/search/:keyword' exact component={Home} />
             <Route path='/chat' exact component={Chat} />
             <Route
