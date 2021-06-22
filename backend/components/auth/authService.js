@@ -5,6 +5,8 @@ const httpStatus = require("http-status");
 const User = require("../../Models/user");
 const refreshTokenModel = require('../../Models/refrechToken');
 const blackListToken = require('../../Models/blackListToken');
+const ResetPassword = require('../../Models/resetPassword');
+
 
 
 /*
@@ -124,6 +126,14 @@ module.exports = class authService {
             return Promise.resolve({message :" logouted user done Successfully"});
         } catch(error) {
             return Promise.reject(error);
+        }
+    }
+
+    async resetPassword(payload,resetPasswordModel) {
+        try {
+            return await Promise.all([User.updatePassword(payload),ResetPassword.deleteResetPasswordToken(resetPasswordModel)]);
+        } catch (err) {
+            return Promise.reject(err);
         }
     }
 }

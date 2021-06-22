@@ -6,12 +6,15 @@ const asyncHandler  = require('express-async-handler');
 * models
 */
 const User              = require('../../Models/user');
-
 /*
 * services
 */
 const tokenServiceClass = require('../token/tokenService');
 const authServiceClass  = require('./authService');
+const resetPasswordService  = require('./resetPasswordService');
+
+const { APIError } = require('../../utils/errorHandler');
+
 
 
 exports.register = async (req, res, next) => {
@@ -69,3 +72,35 @@ exports.logout = asyncHandler ( async (req, res, next) => {
         msg : "logout successfully"
     });
 });
+
+
+
+//post forget password
+exports.forgetPassword = asyncHandler( async (req, res, next) => {
+    const {email} = req.body;
+    const resetPassword = new resetPasswordService();
+    const result = await resetPassword.forgotPassword(email);
+    res.json( {
+        message : result.message,
+    })
+})
+
+//GET reset password
+exports.getResetPasswordToken =asyncHandler(async (req, res, next) => {
+    const resetPassword = req.resetPassword;
+    res.json(resetPassword);
+});
+//POST reset password
+exports.postResetPassword = asyncHandler(  async (req, res, next) => {
+        let payload = {
+            userId      : req.userId,
+            newPassword : req.body.newPassword,
+            resetToken  : req.body.resetToken
+        };
+        const resetPasswordModel = req.resetPassword;
+        const  authService  = new authServiceClass ();
+        await authService.resetPassword(payload,resetPasswordModel);
+        res.json({
+            message : "password Updated successfully!"
+        });
+})

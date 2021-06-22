@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormWrapper from '../components/FormWrapper'
-//import { resetUser } from '../actions/userActions'
+import { forgetPassword } from '../actions/userActions'
 
 const UserReset = ({history}) => {
 
@@ -14,6 +14,7 @@ const UserReset = ({history}) => {
     const dispatch = useDispatch()
 
     const {user,loading,error} = useSelector((state) => state.userLogin)
+    const {loading:forgetPasswordLoading,error:forgetPasswordError,success,msg} = useSelector((state) => state.forgetPassword)
 
 
 
@@ -26,7 +27,12 @@ const UserReset = ({history}) => {
     
       const onSubmit = (e) => {
         e.preventDefault()
-        //dispatch(resetUser(email))
+        if(!email){
+            alert('email is required !!')
+        }else{
+            dispatch(forgetPassword({email}))
+        }
+        
       }
 
 
@@ -35,7 +41,11 @@ const UserReset = ({history}) => {
         <h1>Account Reset</h1>
         {error && <Message variant='danger'>{error}</Message>
         }
+        {forgetPasswordError && <Message variant='danger'>{forgetPasswordError}</Message>
+        }
         {loading && <Loader />}
+        {forgetPasswordLoading && <Loader />}
+        {success && <Message variant='success'>{msg}</Message>}
         <Form onSubmit={onSubmit}>
             <Form.Group controlId='email' className='py-3'>
             <Form.Label>Email Address</Form.Label>

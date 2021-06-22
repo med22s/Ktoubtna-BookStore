@@ -1,6 +1,6 @@
 import {USER_LOGIN_REQUEST,USER_LOGIN_SUCCESS,USER_LOGIN_FAIL,USER_LOGOUT,USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL,
     USER_PROFILE_REQUEST, USER_PROFILE_SUCCESS, USER_PROFILE_FAIL,USER_UPDATE_PROFILE_REQUEST,
-    USER_UPDATE_PROFILE_SUCCESS,USER_UPDATE_PROFILE_FAIL, USER_PROFILE_RESET, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_LIST_FAIL, USER_LIST_RESET, USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DELETE_FAIL, USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS, USER_UPDATE_FAIL, USER_UPDATE_RESET, USER_UPDATE_PROFILE_RESET} from '../Types/userTypes'
+    USER_UPDATE_PROFILE_SUCCESS,USER_UPDATE_PROFILE_FAIL, USER_PROFILE_RESET, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_LIST_FAIL, USER_LIST_RESET, USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DELETE_FAIL, USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS, USER_UPDATE_FAIL, USER_UPDATE_RESET, USER_UPDATE_PROFILE_RESET, FORGET_PASSWORD_REQUEST, FORGET_PASSWORD_SUCCESS, FORGET_PASSWORD_FAIL, GET_RESET_PASSWORD_TOKEN_REQUEST, GET_RESET_PASSWORD_TOKEN_SUCCESS, GET_RESET_PASSWORD_TOKEN_FAIL, PASSWORD_RESET_REQUEST, PASSWORD_RESET_SUCCESS, PASSWORD_RESET_FAIL} from '../Types/userTypes'
 
 export const userLoginReducer = (state = {}, action) => {
     switch (action.type) {
@@ -110,6 +110,49 @@ export const userUpdateReducer = (state = { user: {} }, action) => {
       return {
         user: {}
       }
+    default:
+      return state
+  }
+}
+
+
+export const forgetPasswordReducer = (state = {}, action) => {
+  switch (action.type) {
+    case FORGET_PASSWORD_REQUEST:
+      return { loading: true }
+    case FORGET_PASSWORD_SUCCESS:
+      console.log(action.payload)
+      return { loading: false,msg:action.payload.message, success: true }
+    case FORGET_PASSWORD_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+
+export const getResetPasswordTokenReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_RESET_PASSWORD_TOKEN_REQUEST:
+      return { loading: true }
+    case GET_RESET_PASSWORD_TOKEN_SUCCESS:
+      return { loading: false,user:action.payload }
+    case GET_RESET_PASSWORD_TOKEN_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const passwordResetReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PASSWORD_RESET_REQUEST:
+      return { loading: true }
+    case PASSWORD_RESET_SUCCESS:
+      console.log(action.payload)
+      return { loading: false,msg:action.payload.message }
+    case PASSWORD_RESET_FAIL:
+      return { loading: false, error: action.payload }
     default:
       return state
   }

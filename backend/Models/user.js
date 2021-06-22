@@ -128,6 +128,12 @@ userSchema.statics = {
         }
         return Promise.reject(error);
     },
+    async updatePassword(payload) {
+            const userId    = payload.userId;
+            const user      = await User.findById(userId);
+            user.password   = payload.newPassword;
+            return await user.save();
+    },
 };
 
 

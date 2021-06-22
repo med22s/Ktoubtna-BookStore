@@ -10,6 +10,8 @@ const { role } = require('../../config/config');
 const { isAuth } = require('../../middlewares/auth/auth')
 const { refrechTokenAuth } = require('../../middlewares/auth/refrechToken');
 const { inputValidation } = require('../../middlewares/inputValidation');
+const isValidRessetToken = require('../../middlewares/auth/isValidRessetToken');
+
 
 /*
 * authSchema
@@ -19,7 +21,7 @@ const { schema } = require('./authValidation');
 /*
 * controllers
 */
-const { register, login, getToken, logout } = require('./authController');
+const { register, login, getToken, logout,forgetPassword,getResetPasswordToken,postResetPassword} = require('./authController');
 
 
 
@@ -57,5 +59,14 @@ router.get('/token', refrechTokenAuth, getToken);
 * logout user
 */
 router.post('/logout', isAuth(role.user), logout)
+
+// **************************** reset Password Routes ***************************************
+
+router.post('/forgetPassword', forgetPassword)
+
+//reset password routes
+router.get('/resetPassword/:resetToken',isValidRessetToken,getResetPasswordToken)
+    //update password
+router.post('/resetPassword',isValidRessetToken, postResetPassword);
 
 module.exports = router

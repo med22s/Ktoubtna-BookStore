@@ -12,11 +12,9 @@ const inputValidation = {
         if(!errorsObject.isEmpty())
         {
             let errors = errorsObject.errors;
-            errors = errors.map(error => (error.msg));
-            errors=errors.join(',')
-            console.log('errors',errors);
+            errors = errors.map(error => ({ param: error.param, msg: error.msg }));
             return res.status(httpStatus.BAD_REQUEST).json({
-                msg : errors
+                errors 
             });
         }
         next();
@@ -32,10 +30,9 @@ const inputValidation = {
                     deleteFile(path.join(__dirname,'..','public','images',req.file.filename));
                 //handle Validation Error
                 let errors = errorsObject.errors;
-                errors = errors.map(error => (error.msg));
-                errors=errors.join(',')
+                errors = errors.map(error => ({ param: error.param, msg: error.msg }));
                 return res.status(httpStatus.BAD_REQUEST).json({
-                    msg : errors 
+                    errors 
                 });
             }
             next();
