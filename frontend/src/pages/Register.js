@@ -31,6 +31,7 @@ const Register = ({ location, history }) => {
     e.preventDefault()
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
+      setTimeout(()=>  setMessage(''),4000)
     } else {
       dispatch(registerUser(name, email, password))
     }

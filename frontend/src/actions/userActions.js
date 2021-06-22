@@ -34,7 +34,7 @@ export const loginUser=(email,password)=>async (dispatch)=>{
         
     } catch (error) {
 
-      console.log('error response',error.response.data.msg)
+      console.log('error response',error.response)
       console.log('error',error)
 
       dispatch({
@@ -158,7 +158,7 @@ export const updateUserProfile=(userData)=>async (dispatch,getState)=>{
       localStorage.setItem('user', JSON.stringify(data))
       
   } catch (error) {
-
+      console.log('response :',error.response);
       dispatch({
           type: USER_UPDATE_PROFILE_FAIL,
           payload:
@@ -294,7 +294,6 @@ export const getUsersList = () => async (dispatch, getState) => {
       }
   
       const { data } = await axios.post(`/api/auth/forgetPassword`,email, config)
-  
       dispatch({ type: FORGET_PASSWORD_SUCCESS ,payload:data})
     } catch (error) {
       dispatch({

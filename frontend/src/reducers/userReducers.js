@@ -53,11 +53,11 @@ export const userProfileReducer = (state = {userInfo:{}}, action) => {
 export const userUpdateProfileReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_UPDATE_PROFILE_REQUEST:
-      return { loading: true }
+      return { loading: true ,}
     case USER_UPDATE_PROFILE_SUCCESS:
       return { loading: false, updatedUser: action.payload,updated:true }
     case USER_UPDATE_PROFILE_FAIL:
-      return { loading: false, error: action.payload }
+      return { loading: false, error: action.payload,success:false }
     case USER_UPDATE_PROFILE_RESET:
         return {}
     default:
@@ -122,7 +122,7 @@ export const forgetPasswordReducer = (state = {}, action) => {
       return { loading: true }
     case FORGET_PASSWORD_SUCCESS:
       console.log(action.payload)
-      return { loading: false,msg:action.payload.message, success: true }
+      return { loading: false,msg:action.payload.msg, success: true }
     case FORGET_PASSWORD_FAIL:
       return { loading: false, error: action.payload }
     default:

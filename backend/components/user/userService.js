@@ -19,18 +19,12 @@ module.exports = class bookService {
         return setUpObjectFields(user, userFields);
     }
     /*
-    * @params page  : which page we want
-    * @params limit : how many item we want 
     * @params currentUserId : for dont get it in 
     * @return       : Promise<users>
     * @description  : get users
     */
-    async getUsers(page, limit, currentUserId) {
-        const MAX_PAGE_SIZE = 20;
-        //if limit more than MAX_PAGE_SIZE just set limit to MAX_PAGE_SIZE       
-        limit = Math.min(limit, MAX_PAGE_SIZE);
-        const skip = (page - 1) * limit;
-        return await UserModel.getUsers(skip, limit, currentUserId);
+    async getUsers(currentUserId) {
+        return await UserModel.getUsers(currentUserId);
     };
     /*
     * @params       : id

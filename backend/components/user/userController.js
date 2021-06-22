@@ -19,11 +19,9 @@ const {APIError} = require('../../utils/errorHandler');
 
 
 exports.getUsers = asyncHandler(async (req,res)=>{
-    const skip  = Math.abs(parseInt(req.query.skip))  || 1;  // Make sure to parse the skip to number
-    const limit = Math.abs(parseInt(req.query.limit)) || 15; // Make sure to parse the limit to number
     //use userService to get users
     const userService   = new userServiceClass();
-    const users         = await userService.getUsers(skip,limit,req.user._id);
+    const users         = await userService.getUsers(req.user._id);
     res.json(users);
 });
 
@@ -48,8 +46,6 @@ exports.deleteUser = asyncHandler(async(req,res)=>{
     //use userService to delete user
     const userService   = new userServiceClass();
     const user          = await userService.getUserById(id);
-    if(user.isAdmin === role.admin )
-        throw new APIError("Forbidden!!",httpStatus.FORBIDDEN);
     const result        = await userService.deleteUser(user);
     res.json({
         message : result.message

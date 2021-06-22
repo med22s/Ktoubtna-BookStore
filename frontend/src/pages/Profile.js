@@ -18,7 +18,7 @@ const Profile = ({history}) => {
     const dispatch = useDispatch()
   
     const  {loading, error, userInfo } = useSelector((state) => state.userProfile)
-    const  {updated } = useSelector((state) => state.userUpdateProfile)
+    const  {updated, error : errorUpdatedProfile } = useSelector((state) => state.userUpdateProfile)
     const  {user } = useSelector((state) => state.userLogin)
 
 
@@ -59,12 +59,12 @@ const Profile = ({history}) => {
       }
     }
 
-
     return (
     <Row>
       <Col md={4}>
         <h2>User Profile</h2>
         {message && <Message variant='danger'>{message}</Message>}
+        {errorUpdatedProfile   && <Message variant='danger'>{errorUpdatedProfile}</Message>}
         {}
         {updated && <Message variant='success'>Profile Updated</Message>}
         {loading ? (

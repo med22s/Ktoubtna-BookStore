@@ -108,8 +108,6 @@ userSchema.statics = {
     */
     async getUsers(skip,limit,currentUserId) {
         return await User.find({_id : {$ne : currentUserId}}).select('-password -__v')
-                                        .skip(skip)
-                                        .limit(limit);
     },
 
     /*

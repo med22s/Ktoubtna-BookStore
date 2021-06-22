@@ -81,7 +81,7 @@ exports.forgetPassword = asyncHandler( async (req, res, next) => {
     const resetPassword = new resetPasswordService();
     const result = await resetPassword.forgotPassword(email);
     res.json( {
-        message : result.message,
+        msg : result.message,
     })
 })
 

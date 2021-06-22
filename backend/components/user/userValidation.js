@@ -3,10 +3,9 @@ const userSchema ={
     updateUser : [
         body('name').trim().isString().withMessage("Name must be not just Numbers")
             .isLength({min : 6}).withMessage("Name must be greather than 6")
-            .isLength({max : 30}).withMessage("Name must be less than 25")
+            .isLength({max : 30}).withMessage("Name must be less than 30")
         ,
-        body('email').trim()
-        .normalizeEmail().isEmail().withMessage("must be Valide Email"),
+        body('email').trim().isEmail().withMessage("must be Valide Email"),
         body('isAdmin').trim().custom((value) => {
             if(value)
             {
@@ -19,10 +18,9 @@ const userSchema ={
     updateProfile : [
         body('name').trim().isString().withMessage("Name must be not just Numbers")
             .isLength({min : 6}).withMessage("Name must be greather than 6")
-            .isLength({max : 30}).withMessage("Name must be less than 25")
+            .isLength({max : 30}).withMessage("Name must be less than 30")
         ,
-        body('email').trim()
-        .normalizeEmail().isEmail().withMessage("must be Valide Email"),
+        body('email').trim().isEmail().withMessage("must be Valide Email"),
         body('password').custom((value) => {
             if(value)
             {

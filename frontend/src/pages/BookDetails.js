@@ -38,11 +38,11 @@ const BookDetails = ({match,history}) => {
     useEffect(()=>{
       if(successBookReview){
           alert('Review Added !')
-          dispatch({type:BOOK_ADD_REVIEW_RESET})
           setMessage('')
           setRating(0)
       }
         dispatch(bookDetails(match.params.id))
+        dispatch({type:BOOK_ADD_REVIEW_RESET})
   },[dispatch,match,successBookReview]) // eslint-disable-line react-hooks/exhaustive-deps
 
     console.log('boook',book);

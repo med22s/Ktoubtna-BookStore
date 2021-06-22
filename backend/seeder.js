@@ -2,6 +2,8 @@ const mongoose =require('mongoose')
 const User =require('./Models/user.js') 
 const Book =require('./Models/book.js') 
 const RefreshToken =require('./Models/refrechToken') 
+const Order =require('./Models/order') 
+
 const users =require('./data/users.js') 
 const books =require('./data/sampleBooks.js') 
 const dotenv =require('dotenv') 
@@ -12,9 +14,7 @@ dotenv.config();
 dbConnection();
 
 
-const importData=async ()=>{
-    
-
+const importData = async ()=>{
     try {
         await User.deleteMany()
         await Book.deleteMany()
@@ -39,7 +39,7 @@ const importData=async ()=>{
 const destroyData=async ()=>{
     
     try {
-        await RefreshToken.deleteMany();
+        await Promise.all([RefreshToken.deleteMany(), Order.deleteMany()]) 
         
         console.log('database data destroyed !!');
         process.exit(0)
