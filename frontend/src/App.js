@@ -44,7 +44,6 @@ let isRefreshing = false
 	
  // Retry queue, each item will be a form of function to be executed	
 let retryRequests = []	
- 
 	
 	
  // http response interceptor Response	

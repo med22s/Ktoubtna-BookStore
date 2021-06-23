@@ -4,7 +4,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import {bookListReducer,bookDetailsReducer,bookDeleteReducer, bookCreateReducer, bookUpdateReducer, bookAddReviewReducer, bookTopRatedReducer} from './reducers/bookReducers'
 import {cartReducer} from './reducers/cartReducers'
 import {userLoginReducer,userRegisterReducer,userProfileReducer,userUpdateProfileReducer, userListReducer,
-     userDeleteReducer,userUpdateReducer, forgetPasswordReducer, getResetPasswordTokenReducer, passwordResetReducer} from './reducers/userReducers'
+     userDeleteReducer,userUpdateReducer, forgetPasswordReducer, getResetPasswordTokenReducer, passwordResetReducer, userLogoutReducer} from './reducers/userReducers'
 import {orderSaveReducer,orderDetailsReducer,orderPaymentReducer,orderListPersonalReducer, orderListReducer, orderDeliverReducer} from './reducers/orderReducers'
 
 const allReducers=combineReducers({
@@ -31,7 +31,8 @@ const allReducers=combineReducers({
     orderDeliver:orderDeliverReducer,
     forgetPassword:forgetPasswordReducer,
     getResetPasswordToken:getResetPasswordTokenReducer,
-    passwordReset:passwordResetReducer
+    passwordReset:passwordResetReducer,
+    logout : userLogoutReducer
 });
 
 

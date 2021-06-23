@@ -3,6 +3,8 @@ const User =require('./Models/user.js')
 const Book =require('./Models/book.js') 
 const RefreshToken =require('./Models/refrechToken') 
 const Order =require('./Models/order') 
+const BlacklistToken =require('./Models/blackListToken') 
+
 
 const users =require('./data/users.js') 
 const books =require('./data/sampleBooks.js') 
@@ -39,7 +41,7 @@ const importData = async ()=>{
 const destroyData=async ()=>{
     
     try {
-        await Promise.all([RefreshToken.deleteMany(), Order.deleteMany()]) 
+        await Promise.all([RefreshToken.deleteMany(),BlacklistToken.deleteMany()]) 
         
         console.log('database data destroyed !!');
         process.exit(0)

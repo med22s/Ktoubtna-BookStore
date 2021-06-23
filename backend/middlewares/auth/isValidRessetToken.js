@@ -4,7 +4,7 @@ const ResetPasswordService  = require('../../components/auth/resetPasswordServic
 
 const isValidRessetToken = async (req,res,next) => {
     try {
-        const resetToken    =   req.params.resetToken || req.body.resetToken;
+        const resetToken    = req.params.resetToken || req.body.resetToken;
         let passResetModel  = await ResetPasswordService.isValidToken(resetToken);
         req.userId          = passResetModel.userId;
         req.resetPassword   = passResetModel;

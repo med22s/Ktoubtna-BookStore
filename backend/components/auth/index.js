@@ -32,6 +32,7 @@ const router = express.Router()
 */
 
 
+
 /*
 * POST : /api/auth/register
 * @public
@@ -62,7 +63,7 @@ router.post('/logout', isAuth(role.user), logout)
 
 // **************************** reset Password Routes ***************************************
 
-router.post('/forgetPassword', forgetPassword)
+router.post('/forgetPassword', forgetPassword);
 
 //reset password routes
 router.get('/resetPassword/:resetToken',isValidRessetToken,getResetPasswordToken)
