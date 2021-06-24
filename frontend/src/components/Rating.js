@@ -2,7 +2,7 @@ import React from 'react'
 
 const Rating = ({rating,text}) => {
     return (
-        <div className='stars'>
+        <div className='rating'>
             <span>
                 <i className={rating>=1 ? 'fas fa-star' : rating>=0.5 ? 'fas fa-star-half-alt' : 'far fa-star'  }>
                 </i>
@@ -23,7 +23,7 @@ const Rating = ({rating,text}) => {
                 <i className={rating>=5 ? 'fas fa-star' : rating>=4.5 ? 'fas fa-star-half-alt' : 'far fa-star'  }>
                 </i>
             </span>
-            <span className="span-rating">{text && text}</span>
+            <span>{text && text}</span>
         </div>
     )
 }
