@@ -68,6 +68,6 @@ router.post('/forgetPassword', forgetPassword);
 //reset password routes
 router.get('/resetPassword/:resetToken',isValidRessetToken,getResetPasswordToken)
     //update password
-router.post('/resetPassword',isValidRessetToken, postResetPassword);
+router.post('/resetPassword',isValidRessetToken,schema.resetPassword,inputValidation.validateInput, postResetPassword);
 
 module.exports = router

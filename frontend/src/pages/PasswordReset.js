@@ -51,8 +51,8 @@ const PasswordReset = ({history,match}) => {
         }else if(passwordResetError){
             setMessage(passwordResetError)
             setTimeout(() => {
-                history.push('/Reset')
-            }, 3000);
+                setMessage('');
+            }, 5000);
         }
 
         

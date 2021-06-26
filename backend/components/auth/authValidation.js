@@ -16,7 +16,12 @@ const schema = {
         body('password').trim().isString().withMessage("password must be not just Numbers")
         .isLength({min : 6}).withMessage("password must be greather than 6")
         .isLength({max : 50}).withMessage("password must be less than 50")
-    ]
+    ],
+    resetPassword : [
+        body('newPassword').trim().isString().withMessage("password must be not just Numbers")
+        .isLength({min : 6}).withMessage("password must be greather than 6")
+        .isLength({max : 50}).withMessage("password must be less than 50")
+    ],
 };
 module.exports= {
     schema
