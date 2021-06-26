@@ -45,8 +45,6 @@ To-do list:
 ## Status
 Project is: _in progress_.
 
-## Inspiration
-Project inspired based on https://reedsy.com/discovery
 
 ## Contributors
 
